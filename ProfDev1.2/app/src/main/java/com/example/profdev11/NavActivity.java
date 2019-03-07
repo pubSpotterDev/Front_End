@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+
+
 public class NavActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
@@ -19,7 +21,7 @@ public class NavActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_map:
-                    Intent intent = new Intent(NavActivity.this, SecondActivity.class);
+                    Intent intent = new Intent(NavActivity.this, MapsActivity.class);
                     startActivity(intent);
                     return true;
                 case R.id.navigation_pub:
