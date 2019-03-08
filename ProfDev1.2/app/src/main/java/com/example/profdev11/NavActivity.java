@@ -12,7 +12,8 @@ import android.widget.TextView;
 
 public class NavActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+     TextView tvGreeting,tvPoints;
+     int points = 0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,9 +43,19 @@ public class NavActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+        tvGreeting = findViewById(R.id.tvGreeting);
+        tvPoints = findViewById(R.id.tvPoints);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("USERNAME");
+
+        tvGreeting.setText("Hello :"+username);
+        tvPoints.setText("You have "+points+" points");
+
+
+
+
     }
 
 }

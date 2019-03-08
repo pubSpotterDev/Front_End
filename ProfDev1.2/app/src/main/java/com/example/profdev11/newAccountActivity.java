@@ -26,21 +26,27 @@ public class newAccountActivity extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validate(etPassword.getText().toString(),etPassword2.getText().toString());
+                validate(etPassword.getText().toString(),etPassword2.getText().toString(),etUsername.getText().toString());
             }
         });
 
     }
 
 
-    void validate(String password, String password2){
+    void validate(String password, String password2, String username){
 
-        if(password.equals(password2)){
-            Intent intent = new Intent(newAccountActivity.this, NavActivity.class);
-            startActivity(intent);
-        }else{
-            Toast.makeText(getApplicationContext(),"Passwords don't match",Toast.LENGTH_LONG).show();
+        if(password.length()<7){
+            Toast.makeText(getApplicationContext(),"Password is not long enough",Toast.LENGTH_LONG).show();
+        }
+        else {
+            if (password.equals(password2)) {
+                Intent intent = new Intent(newAccountActivity.this, NavActivity.class);
+                intent.putExtra("USERNAME", username);
+                startActivity(intent);
+            } else {
+                Toast.makeText(getApplicationContext(), "Passwords don't match", Toast.LENGTH_LONG).show();
 
+            }
         }
     }
 }

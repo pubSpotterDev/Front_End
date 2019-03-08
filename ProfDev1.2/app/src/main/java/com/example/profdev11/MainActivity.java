@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(username.equals("admin") && userpassword.equals("kings123")){
             Intent intent = new Intent(MainActivity.this, NavActivity.class);
+            intent.putExtra("USERNAME",username);
             startActivity(intent);
         }else{
             counter--;
