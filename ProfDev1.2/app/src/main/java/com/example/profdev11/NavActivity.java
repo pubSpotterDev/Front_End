@@ -24,11 +24,11 @@ public class NavActivity extends AppCompatActivity {
                     Intent intent = new Intent(NavActivity.this, MapsActivity.class);
                     startActivity(intent);
                     return true;
-                case R.id.navigation_pub:
+                case R.id.navigation_account:
                     Intent intent2 = new Intent(NavActivity.this, AccountActivity.class);
                     startActivity(intent2);
                     return true;
-                case R.id.navigation_account:
+                case R.id.navigation_about:
                     Intent intent3 = new Intent(NavActivity.this,AboutActivity.class);
                     startActivity(intent3);
                     return true;
