@@ -3,11 +3,13 @@ package com.example.profdev11;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class AccountActivity extends AppCompatActivity {
 
-    TextView tvName, tvAge, tvPoints, tvGender;
+    TextView tvName, tvAge, tvPoints, tvGender, tvListLabel;
+    ListView lsPubs;
 
 
     @Override
@@ -19,6 +21,8 @@ public class AccountActivity extends AppCompatActivity {
         tvAge =  findViewById(R.id.tvAge);
         tvGender = findViewById(R.id.tvGender);
         tvPoints = findViewById(R.id.tvPoints);
+        tvListLabel = findViewById(R.id.tvListLabel);
+        lsPubs = findViewById(R.id.lsPubs);
 
 
         Intent intent = getIntent();
@@ -31,6 +35,14 @@ public class AccountActivity extends AppCompatActivity {
         tvName.setText("Hey "+username);
         tvAge.setText("You are "+age+" years old");
         tvPoints.setText("You have "+points+" pub points (pp)");
+
+        tvGender.setText("Your gender is :"+gender);
+        tvListLabel.setText("These are the pubs you have visited so far: ");
+
+
+
+
         tvGender.setText("Your gender is: "+gender);
+
     }
 }
