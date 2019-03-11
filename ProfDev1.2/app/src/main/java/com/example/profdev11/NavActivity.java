@@ -14,6 +14,31 @@ public class NavActivity extends AppCompatActivity {
 
      TextView tvGreeting,tvPoints,tvPubLabel;
      int points = 0;
+     int age = 21;
+     String gender = "male";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_nav);
+
+        tvGreeting = findViewById(R.id.tvGreeting);
+        tvPoints = findViewById(R.id.tvPoints);
+        tvPubLabel = findViewById(R.id.tvPubLabel);
+
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("USERNAME");
+
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        tvGreeting.setText("Hello :"+username);
+        tvPoints.setText("You have "+points+" points");
+        tvPubLabel.setText(("you have been to the following pubs: "));
+
+
+    }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -27,6 +52,13 @@ public class NavActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_account:
                     Intent intent2 = new Intent(NavActivity.this, AccountActivity.class);
+                    Intent intent4 = getIntent();
+                    String username = intent4.getStringExtra("USERNAME");
+                    intent2.putExtra("NAME",username);
+                    intent2.putExtra("AGE",age);
+                    intent2.putExtra("POINTS",points);
+                    intent2.putExtra("GENDER",gender);
+
                     startActivity(intent2);
                     return true;
                 case R.id.navigation_about:
@@ -38,31 +70,6 @@ public class NavActivity extends AppCompatActivity {
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nav);
 
-        tvGreeting = findViewById(R.id.tvGreeting);
-        tvPoints = findViewById(R.id.tvPoints);
-        tvPubLabel = findViewById(R.id.tvPubLabel);
-
-
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
-
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("USERNAME");
-
-        tvGreeting.setText("Hello :"+username);
-        tvPoints.setText("You have "+points+" points");
-        tvPubLabel.setText(("you have been to the following pubs: "));
-
-
-
-
-    }
 
 }
