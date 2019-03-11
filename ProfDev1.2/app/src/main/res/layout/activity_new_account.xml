@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.107" />
+        app:layout_constraintVertical_bias="0.064" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUsername"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.034" />
 
     <EditText
         android:id="@+id/etPassword2"
@@ -55,24 +55,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintVertical_bias="0.049" />
 
     <TextView
         android:id="@+id/tvHelp"
-        android:layout_width="210dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="168dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="99dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="144dp"
         android:layout_marginBottom="8dp"
-        android:text="Must be 7 charecters long"
+        android:text="Must be 7 characters long"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnCreate"
@@ -87,6 +86,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword2"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintVertical_bias="0.084" />
 
 </android.support.constraint.ConstraintLayout>
