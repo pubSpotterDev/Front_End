@@ -27,6 +27,7 @@ public class NavActivity extends AppCompatActivity {
      String gender = "male";
      String[] pubs;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +48,6 @@ public class NavActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-
-
         tvGreeting.setText("Hello "+username);
         tvPoints.setText("You have "+points+" points");
         tvPubLabel.setText(("You are near the following pubs: "));
@@ -67,6 +66,7 @@ public class NavActivity extends AppCompatActivity {
                     Intent intent = new Intent(NavActivity.this, MapsActivity.class);
                     startActivity(intent);
                     return true;
+
                 case R.id.navigation_account:
                     Intent intent2 = new Intent(NavActivity.this, AccountActivity.class);
                     Intent intent4 = getIntent();
@@ -78,6 +78,7 @@ public class NavActivity extends AppCompatActivity {
 
                     startActivity(intent2);
                     return true;
+
                 case R.id.navigation_about:
                     Intent intent3 = new Intent(NavActivity.this,AboutActivity.class);
                     startActivity(intent3);
