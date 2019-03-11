@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class NavActivity extends AppCompatActivity {
 
-     TextView tvGreeting,tvPoints;
+     TextView tvGreeting,tvPoints,tvPubLabel;
      int points = 0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -45,13 +45,20 @@ public class NavActivity extends AppCompatActivity {
 
         tvGreeting = findViewById(R.id.tvGreeting);
         tvPoints = findViewById(R.id.tvPoints);
+        tvPubLabel = findViewById(R.id.tvPubLabel);
+
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+
         Intent intent = getIntent();
         String username = intent.getStringExtra("USERNAME");
 
         tvGreeting.setText("Hello :"+username);
         tvPoints.setText("You have "+points+" points");
+        tvPubLabel.setText(("you have been to the following pubs: "));
 
 
 
