@@ -48,9 +48,15 @@ public class NavActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+
         tvGreeting.setText("Hello "+username);
         tvPoints.setText("You have "+points+" points");
         tvPubLabel.setText(("You are near the following pubs: "));
+
+        tvGreeting.setText("Hello: "+username);
+        tvPoints.setText("You have "+points+" points");
+        tvPubLabel.setText(("You have been to the following pubs: "));
+
 
 
     }
@@ -87,8 +93,6 @@ public class NavActivity extends AppCompatActivity {
             return false;
         }
     };
-
-
 
     public void showMap(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
