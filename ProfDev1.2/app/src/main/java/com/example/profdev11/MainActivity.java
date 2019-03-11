@@ -3,10 +3,8 @@ package com.example.profdev11;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        name = (EditText) findViewById(R.id.etName);
+        name = (EditText) findViewById(R.id.etPname);
         password = (EditText) findViewById(R.id.etPassword);
         info = (TextView) findViewById(R.id.tvInfo);
         login = (Button) findViewById(R.id.btnLogin);

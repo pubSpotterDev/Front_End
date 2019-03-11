@@ -139,7 +139,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     enableMyLocation();
                 } else {
                     Toast.makeText(this,
-                            R.string.location_permission_denied,
+                            "location_permission_denied",
                             Toast.LENGTH_SHORT).show();
                 }
                 break;
