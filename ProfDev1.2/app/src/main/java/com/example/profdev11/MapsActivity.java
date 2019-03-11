@@ -20,6 +20,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
@@ -96,16 +97,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng Stockport = new LatLng(53.417025, -2.18828);
-        LatLng Manchester = new LatLng(53.483959, -2.244644);
+        float Zoom = (float)15.00;
 
+        //gets user location
+        enableMyLocation();
+
+        LatLng Stockport = new LatLng(53.417025, -2.18828);
+
+        mMap.addMarker(new MarkerOptions()
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
+                .position(Stockport)
+                .title("Stockport"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Stockport, Zoom));
+
+      //  LatLng Manchester = new LatLng(53.483959, -2.244644);
+        //LatLng Home = new LatLng(53.470407, -2.239145);
 
         // Add a marker in Manchester and move the camera
-        mMap.addMarker(new MarkerOptions().position(Manchester).title("Marker in Manchester").snippet("Blah blah blah"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(Manchester));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Manchester, (float) 10.1));
+       // mMap.addMarker(new MarkerOptions().position(Manchester).title("Marker in Manchester").snippet("Blah blah blah"));
+       // mMap.moveCamera(CameraUpdateFactory.newLatLng(Manchester));
+       // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Manchester, (float) 10.1));
 
-        mMap.addMarker(new MarkerOptions().position(Stockport).title("Stockport"));
+       // mMap.addMarker(new MarkerOptions().position(Stockport).title("Stockport"));
 
         //find your location on map
         //add a marker by clicking on map
