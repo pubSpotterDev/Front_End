@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.support.design.widget.BottomNavigationView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,11 +26,17 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 
+import java.util.Map;
+
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private final int REQUEST_LOCATION_PERMISSION = 1;
 
+    //Hardcoded values to keep the navbar from breaking without dB integration
+    int points = 0;
+    int age = 21;
+    String gender = "male";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // Construct a FusedLocationProviderClient.
         //mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        //NavBar
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     @Override
@@ -159,5 +170,37 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     REQUEST_LOCATION_PERMISSION);
         }
     }
+
+    //NavBar
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            switch(menuItem.getItemId()){
+                case R.id.navigation_main:
+                    Intent intentNav = new Intent(MapsActivity.this,NavActivity.class);
+                    startActivity(intentNav);
+                    return true;
+                case R.id.navigation_map:
+                    Toast.makeText(getApplicationContext(),"You are already on the map page",Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.navigation_account:
+                    Intent intentAccount = new Intent(MapsActivity.this,AccountActivity.class);
+                    Intent intentGet = getIntent();
+                    String username = intentGet.getStringExtra("USERNAME");
+                    intentAccount.putExtra("NAME",username);
+                    intentAccount.putExtra("AGE",age);
+                    intentAccount.putExtra("POINTS",points);
+                    intentAccount.putExtra("GENDER",gender);
+                    startActivity(intentAccount);
+                    return true;
+                case R.id.navigation_about:
+                    Intent intentAbout = new Intent(MapsActivity.this,AboutActivity.class);
+                    startActivity(intentAbout);
+                    return true;
+            }//switch
+            return false;
+        }//onNavigationItemSelected bool
+    };//OnNavigationItemSelectedListener
 
 }
