@@ -22,6 +22,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 
@@ -79,9 +80,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 startActivity(intent);
                 return true;
             case R.id.check_in_pub:
+
                 Intent intent2 = new Intent(MapsActivity.this, CheckActivity.class);
                 startActivity(intent2);
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -99,34 +102,37 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        //float Zoom = (float)12.00;
+        LatLng Home = new LatLng(53.470407, -2.239145);
+        float Zoom = (float)15.00;
 
         //gets user location
-        //enableMyLocation();
+        enableMyLocation();
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Home, Zoom));
 
-        //LatLng Stockport = new LatLng(53.417025, -2.18828);
 
-        //mMap.addMarker(new MarkerOptions()
-         //       .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
-        //        .position(Stockport)
-         //       .title("Stockport"));
-       // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Stockport, Zoom));
+        LatLng TheFootage = new LatLng(53.470, -2.236);
+        LatLng TheTemple = new LatLng(53.475, -2.242);
+        LatLng TheGasWorksBrewbar = new LatLng(53.473, -2.246);
+        LatLng BeAtOne = new LatLng(53.482, -2.246);
 
-      //  LatLng Manchester = new LatLng(53.483959, -2.244644);
-        //LatLng Home = new LatLng(53.470407, -2.239145);
 
-        // Add a marker in Manchester and move the camera
-       // mMap.addMarker(new MarkerOptions().position(Manchester).title("Marker in Manchester").snippet("Blah blah blah"));
-       // mMap.moveCamera(CameraUpdateFactory.newLatLng(Manchester));
-       // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Manchester, (float) 10.1));
+        mMap.addMarker(new MarkerOptions()
+                .position(TheFootage)
+                .title("The Footage")
+                .snippet("126 Grosvenor Street, Manchester, M1 7HL"));
+        mMap.addMarker(new MarkerOptions()
+                .position(TheTemple)
+                .title("The Temple")
+                .snippet("100 Great Bridgewater Street, Manchester, M1 5JW"));
+        mMap.addMarker(new MarkerOptions()
+                .position(TheGasWorksBrewbar)
+                .title("The Gas Works Brewbar")
+                .snippet("2 Tony Wilson Place, Manchester, M1 5WG"));
+        mMap.addMarker(new MarkerOptions()
+                .position(BeAtOne)
+                .title("Be At One")
+                .snippet("Barton Arcade, Deansgate, Manchester, M3 2BW"));
 
-       // mMap.addMarker(new MarkerOptions().position(Stockport).title("Stockport"));
-
-        //find your location on map
-        //add a marker by clicking on map
-
-        //add markers from database
-        //add new markers to database
 
     }
 
@@ -153,6 +159,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
+           // LatLng UserLocation = new LatLng();
             String TAG = "";
             Log.d(TAG, "getLocation: permissions granted");
         } else {
@@ -161,5 +168,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     REQUEST_LOCATION_PERMISSION);
         }
     }
+
+
 
 }
