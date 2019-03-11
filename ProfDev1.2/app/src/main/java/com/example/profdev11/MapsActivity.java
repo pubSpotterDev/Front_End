@@ -97,18 +97,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        //float Zoom = (float)12.00;
+        float Zoom = (float)12.00;
 
         //gets user location
-        //enableMyLocation();
+        enableMyLocation();
 
-        //LatLng Stockport = new LatLng(53.417025, -2.18828);
+        LatLng Stockport = new LatLng(53.417025, -2.18828);
 
-        //mMap.addMarker(new MarkerOptions()
-         //       .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
-        //        .position(Stockport)
-         //       .title("Stockport"));
-       // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Stockport, Zoom));
+        mMap.addMarker(new MarkerOptions()
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
+                .position(Stockport)
+                .title("Stockport"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Stockport, Zoom));
 
       //  LatLng Manchester = new LatLng(53.483959, -2.244644);
         //LatLng Home = new LatLng(53.470407, -2.239145);
