@@ -72,10 +72,4 @@ public class NavActivity extends AppCompatActivity {
     };
 
 
-
-    public void showMap(View view) {
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
-    }
-
 }
