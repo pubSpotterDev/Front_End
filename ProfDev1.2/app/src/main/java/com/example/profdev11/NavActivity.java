@@ -8,9 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+
+
 public class NavActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+     TextView tvGreeting,tvPoints;
+     int points = 0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -19,14 +22,14 @@ public class NavActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_map:
-                    Intent intent = new Intent(NavActivity.this, SecondActivity.class);
+                    Intent intent = new Intent(NavActivity.this, MapsActivity.class);
                     startActivity(intent);
                     return true;
-                case R.id.navigation_pub:
+                case R.id.navigation_account:
                     Intent intent2 = new Intent(NavActivity.this, AccountActivity.class);
                     startActivity(intent2);
                     return true;
-                case R.id.navigation_account:
+                case R.id.navigation_about:
                     Intent intent3 = new Intent(NavActivity.this,AboutActivity.class);
                     startActivity(intent3);
                     return true;
@@ -40,9 +43,19 @@ public class NavActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+        tvGreeting = findViewById(R.id.tvGreeting);
+        tvPoints = findViewById(R.id.tvPoints);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("USERNAME");
+
+        tvGreeting.setText("Hello :"+username);
+        tvPoints.setText("You have "+points+" points");
+
+
+
+
     }
 
 }

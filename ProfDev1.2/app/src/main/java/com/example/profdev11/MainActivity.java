@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     EditText password;
     TextView info;
     Button login;
+    Button newAccount;
     int counter = 5;
 
     @Override
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.etPassword);
         info = (TextView) findViewById(R.id.tvInfo);
         login = (Button) findViewById(R.id.btnLogin);
+        newAccount = findViewById(R.id.btnAccount);
 
         password.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
@@ -41,12 +43,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        newAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, newAccountActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     void validate(String username, String userpassword){
 
         if(username.equals("admin") && userpassword.equals("kings123")){
             Intent intent = new Intent(MainActivity.this, NavActivity.class);
+            intent.putExtra("USERNAME",username);
             startActivity(intent);
         }else{
             counter--;
