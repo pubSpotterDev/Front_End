@@ -75,11 +75,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 return true;
                 //CHANGE THESE ACTIVITY POINTERS WHEN THE FORMS ARE MADE
             case R.id.add_pub:
-                Intent intent = new Intent(this, AboutActivity.class);
+                Intent intent = new Intent(MapsActivity.this, FormActivity.class);
                 startActivity(intent);
+                return true;
             case R.id.check_in_pub:
-                intent = new Intent(this, NavActivity.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(MapsActivity.this, CheckActivity.class);
+                startActivity(intent2);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

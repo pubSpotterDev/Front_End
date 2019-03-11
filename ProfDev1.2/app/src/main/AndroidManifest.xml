@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FormActivity"></activity>
+        <activity android:name=".CheckActivity"></activity>
+        <activity android:name=".FormActivity" />
         <activity android:name=".newAccountActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
