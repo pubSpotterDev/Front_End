@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProfDev1.1</string>
+    <string name="app_name">Pub Spotter</string>
     <string name="title_activity_nav">NavActivity</string>
     <string name="title_map">Home</string>
     <string name="title_pubs">Dashboard</string>
