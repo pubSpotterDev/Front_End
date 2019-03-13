@@ -3,10 +3,8 @@ package com.example.profdev11;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 validate(name.getText().toString(),password.getText().toString());
             }
-        });
+        });//login listener
 
         newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, newAccountActivity.class);
                 startActivity(intent);
             }
-        });
+        });//newAccount listener
 
-    }
+    }//onCreate method
 
     void validate(String username, String userpassword){
 
@@ -65,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(counter==0){
                 login.setEnabled(false);
-            }
-        }
-    }
-}
+            }//inner if
+        }//outer if/else
+    }//validate method
+}//MainActivity

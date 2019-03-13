@@ -44,8 +44,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         // Construct a GeoDataClient.
        // mGeoDataClient = Places.getGeoDataClient(this, null);
@@ -56,17 +55,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Construct a FusedLocationProviderClient.
         //mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        //NavBar
+        /**
+        //DEPRECATED - now integrated into top menu
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+         */
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.map_menu, menu);
+        inflater.inflate(R.menu.navigation,menu);
         return true;
-    }
+    }//onCreateOptionsMenu method
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -91,10 +93,33 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.check_in_pub:
                 intent = new Intent(this, NavActivity.class);
                 startActivity(intent);
+            //NavBar
+            case R.id.navigation_main:
+                Intent intentNav = new Intent(MapsActivity.this,NavActivity.class);
+                startActivity(intentNav);
+                return true;
+            case R.id.navigation_map:
+                Toast.makeText(getApplicationContext(),"You are already on the map page",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.navigation_account:
+                Intent intentAccount = new Intent(MapsActivity.this,AccountActivity.class);
+                Intent intentGet = getIntent();
+                String username = intentGet.getStringExtra("USERNAME");
+                intentAccount.putExtra("NAME",username);
+                intentAccount.putExtra("AGE",age);
+                intentAccount.putExtra("POINTS",points);
+                intentAccount.putExtra("GENDER",gender);
+                startActivity(intentAccount);
+                return true;
+            case R.id.navigation_about:
+                Intent intentAbout = new Intent(MapsActivity.this,AboutActivity.class);
+                startActivity(intentAbout);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
+        }//switch
+    }//onOptionsItemSelected method
 
     /**
      * Manipulates the map once available.
@@ -136,12 +161,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //add markers from database
         //add new markers to database
-
-    }
+    }//onMapReady method
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case REQUEST_LOCATION_PERMISSION:
                 // If the permission is granted, get the location,
@@ -152,10 +175,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     Toast.makeText(this,
                             R.string.location_permission_denied,
                             Toast.LENGTH_SHORT).show();
-                }
+                }//location permissions check
                 break;
-        }
-    }
+        }//switch
+    }//onRequestPermissionsResult method
 
     private void enableMyLocation() {
         if (ContextCompat.checkSelfPermission(this,
@@ -168,12 +191,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             ActivityCompat.requestPermissions(this, new String[]
                             {Manifest.permission.ACCESS_FINE_LOCATION},
                     REQUEST_LOCATION_PERMISSION);
-        }
-    }
+        }//location access if/else
+    }//enableMyLocation method
 
-    //NavBar
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+/**
+    //NavBar DEPRECATED - now integrated into top menu
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             switch(menuItem.getItemId()){
@@ -202,5 +225,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return false;
         }//onNavigationItemSelected bool
     };//OnNavigationItemSelectedListener
-
-}
+*/
+}//MapsActivity class

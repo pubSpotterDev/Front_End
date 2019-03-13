@@ -7,16 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
+import android.widget.Toast;
 
 public class NavActivity extends AppCompatActivity {
 
@@ -26,7 +19,6 @@ public class NavActivity extends AppCompatActivity {
      int age = 21;
      String gender = "male";
      String[] pubs;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +49,7 @@ public class NavActivity extends AppCompatActivity {
         tvPoints.setText("You have "+points+" points");
         tvPubLabel.setText(("You have been to the following pubs: "));
 
-
-
-    }
-
+    }//onCreate method
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -68,35 +57,36 @@ public class NavActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_map:
-                    Intent intent = new Intent(NavActivity.this, MapsActivity.class);
-                    startActivity(intent);
+                case R.id.navigation_main:
+                    Toast.makeText(getApplicationContext(),"You are already on the main page",Toast.LENGTH_SHORT).show();
                     return true;
-
+                case R.id.navigation_map:
+                    Intent intentMap = new Intent(NavActivity.this, MapsActivity.class);
+                    startActivity(intentMap);
+                    return true;
                 case R.id.navigation_account:
-                    Intent intent2 = new Intent(NavActivity.this, AccountActivity.class);
+                    Intent intentAccount = new Intent(NavActivity.this, AccountActivity.class);
                     Intent intent4 = getIntent();
                     String username = intent4.getStringExtra("USERNAME");
-                    intent2.putExtra("NAME",username);
-                    intent2.putExtra("AGE",age);
-                    intent2.putExtra("POINTS",points);
-                    intent2.putExtra("GENDER",gender);
-
-                    startActivity(intent2);
+                    intentAccount.putExtra("NAME",username);
+                    intentAccount.putExtra("AGE",age);
+                    intentAccount.putExtra("POINTS",points);
+                    intentAccount.putExtra("GENDER",gender);
+                    startActivity(intentAccount);
                     return true;
-
                 case R.id.navigation_about:
-                    Intent intent3 = new Intent(NavActivity.this,AboutActivity.class);
-                    startActivity(intent3);
+                    Intent intentAbout = new Intent(NavActivity.this,AboutActivity.class);
+                    startActivity(intentAbout);
                     return true;
-            }
+            }//switch
             return false;
         }
-    };
+    };//OnNavigationItemSelectedListener
 
+/*// No Longer needed as integrated into the navbar
     public void showMap(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
-
-}
+*/
+}//NavActivity class
