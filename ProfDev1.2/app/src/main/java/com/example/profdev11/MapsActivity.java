@@ -3,15 +3,8 @@ package com.example.profdev11;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-<<<<<<< HEAD
 import android.location.Address;
 import android.location.Geocoder;
-=======
-import android.location.Location;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
->>>>>>> parent of 0cf901f... Conflict changes
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;

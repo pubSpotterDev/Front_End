@@ -59,12 +59,12 @@ public class FormActivity extends AppCompatActivity {
             }
         });
 
-       /* add.setOnClickListener(new View.OnClickListener() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 newPubCoordinates(pName, pStreetname, pPostcode);
             }
-        });*/
+        });
     }
 
     public String PerformPostCall(String requestURL, HashMap<String, String> postDataParams) {
@@ -136,8 +136,9 @@ public class FormActivity extends AppCompatActivity {
         return result.toString();
     }
 
-    //
-   /* public LatLng newPubCoordinates(TextView pName,TextView pStreetname, TextView pPostcode) {
+    //This method takes the address details input by the user and uses Geocoder class
+    //to retrieve the coordinates of the location
+    public LatLng newPubCoordinates(TextView pName,TextView pStreetname, TextView pPostcode) {
 
         float latitude = 0;
         float longitude = 0;
@@ -160,6 +161,6 @@ public class FormActivity extends AppCompatActivity {
         LatLng pubLocation = new LatLng(latitude, longitude);
         Toast.makeText(getApplicationContext(), "ping", Toast.LENGTH_LONG).show();
         return pubLocation;
-    }*/
+    }
 
 }
