@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             counter--;
             info.setText("Remaining attempts: "+String.valueOf(counter));
+            Toast.makeText(getApplicationContext(),"Username or Password is wrong",Toast.LENGTH_LONG).show();
 
             if(counter==0){
                 login.setEnabled(false);
