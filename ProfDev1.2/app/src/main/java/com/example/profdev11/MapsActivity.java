@@ -3,10 +3,13 @@ package com.example.profdev11;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+<<<<<<< HEAD
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 
+=======
+>>>>>>> parent of b301fd9... Adding geocoding
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -29,13 +32,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.List;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -88,7 +84,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 //CHANGE THESE ACTIVITY POINTERS WHEN THE FORMS ARE MADE
             case R.id.add_pub:
                 Intent intent = new Intent(MapsActivity.this, FormActivity.class);
+<<<<<<< HEAD
                 //intent.putExtra("LATLANG",)
+=======
+>>>>>>> parent of b301fd9... Adding geocoding
                 startActivity(intent);
                 return true;
             case R.id.check_in_pub:
@@ -150,7 +149,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .snippet("Barton Arcade, Deansgate, Manchester, M3 2BW"));
 
 
-
     }
 
     @Override
@@ -185,8 +183,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     REQUEST_LOCATION_PERMISSION);
         }
     }
-
-
 
 
 

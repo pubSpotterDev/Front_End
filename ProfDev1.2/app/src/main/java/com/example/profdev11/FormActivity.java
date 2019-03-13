@@ -1,7 +1,5 @@
 package com.example.profdev11;
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.maps.model.LatLng;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -23,7 +17,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
@@ -36,8 +29,6 @@ public class FormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-
-
 
         final TextView pId = findViewById(R.id.etPid);
         final TextView pName = findViewById(R.id.etPname);
@@ -58,6 +49,7 @@ public class FormActivity extends AppCompatActivity {
                 PerformPostCall(url, params);
             }
         });
+<<<<<<< HEAD
 
        /* add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +57,8 @@ public class FormActivity extends AppCompatActivity {
                 newPubCoordinates(pName, pStreetname, pPostcode);
             }
         });*/
+=======
+>>>>>>> parent of b301fd9... Adding geocoding
     }
 
     public String PerformPostCall(String requestURL, HashMap<String, String> postDataParams) {
@@ -136,6 +130,7 @@ public class FormActivity extends AppCompatActivity {
         return result.toString();
     }
 
+<<<<<<< HEAD
     //
    /* public LatLng newPubCoordinates(TextView pName,TextView pStreetname, TextView pPostcode) {
 
@@ -162,4 +157,6 @@ public class FormActivity extends AppCompatActivity {
         return pubLocation;
     }*/
 
+=======
+>>>>>>> parent of b301fd9... Adding geocoding
 }
