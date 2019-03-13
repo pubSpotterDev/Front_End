@@ -32,7 +32,7 @@ public class AccountActivity extends AppCompatActivity {
         int age = intent.getIntExtra("AGE",18);
 
 
-        tvName.setText("Hey "+username);
+        tvName.setText("Here are you account details");
         tvAge.setText("You are "+age+" years old");
         tvPoints.setText("You have "+points+" pub points (pp)");
 

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#131f28"
     android:textColor="#e2e2e2"
+
     tools:context=".MainActivity">
 
     <EditText
@@ -20,6 +21,7 @@
         android:hint="Name"
         android:inputType="textPersonName"
         android:textColor="#e2e2e2"
+        android:textColorHint="@color/colorText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
@@ -39,10 +41,10 @@
         android:hint="Password"
         android:inputType="textPersonName"
         android:textColor="#e2e2e2"
+        android:textColorHint="@color/colorText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPname"
         app:layout_constraintVertical_bias="0.095" />
