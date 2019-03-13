@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +42,6 @@ public class NavActivity extends AppCompatActivity {
 
     ArrayList<Pub> allPubs = new ArrayList<>();
     List<Map<String, String>> data = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,31 +162,31 @@ public class NavActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_map:
-                    Intent intent = new Intent(NavActivity.this, MapsActivity.class);
-                    startActivity(intent);
+                case R.id.navigation_main:
+                    Toast.makeText(getApplicationContext(),"You are already on the main page",Toast.LENGTH_SHORT).show();
                     return true;
-
+                case R.id.navigation_map:
+                    Intent intentMap = new Intent(NavActivity.this, MapsActivity.class);
+                    startActivity(intentMap);
+                    return true;
                 case R.id.navigation_account:
-                    Intent intent2 = new Intent(NavActivity.this, AccountActivity.class);
+                    Intent intentAccount = new Intent(NavActivity.this, AccountActivity.class);
                     Intent intent4 = getIntent();
                     String username = intent4.getStringExtra("USERNAME");
-                    intent2.putExtra("NAME",username);
-                    intent2.putExtra("AGE",age);
-                    intent2.putExtra("POINTS",points);
-                    intent2.putExtra("GENDER",gender);
-
-                    startActivity(intent2);
+                    intentAccount.putExtra("NAME",username);
+                    intentAccount.putExtra("AGE",age);
+                    intentAccount.putExtra("POINTS",points);
+                    intentAccount.putExtra("GENDER",gender);
+                    startActivity(intentAccount);
                     return true;
-
                 case R.id.navigation_about:
-                    Intent intent3 = new Intent(NavActivity.this,AboutActivity.class);
-                    startActivity(intent3);
+                    Intent intentAbout = new Intent(NavActivity.this,AboutActivity.class);
+                    startActivity(intentAbout);
                     return true;
-            }
+            }//switch
             return false;
         }
-    };
+    };//OnNavigationItemSelectedListener
 
 
 

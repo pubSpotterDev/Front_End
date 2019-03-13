@@ -6,11 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class AboutActivity extends AppCompatActivity {
 
+    //Hardcoded values to keep the navbar from breaking without dB integration
     int points = 0;
     int age = 21;
     String gender = "male";
@@ -19,7 +19,7 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        Intent intent = getIntent();
+        //Intent intent = getIntent();  // legacy from NacActivity navbar
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -30,24 +30,26 @@ public class AboutActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             switch(menuItem.getItemId()){
+                case R.id.navigation_main:
+                    Intent intentNav = new Intent(AboutActivity.this,NavActivity.class);
+                    startActivity(intentNav);
                 case R.id.navigation_map:
-                    Intent intent = new Intent(AboutActivity.this, MapsActivity.class);
-                    startActivity(intent);
-                    return true;
+                    Intent intentMap = new Intent(AboutActivity.this, MapsActivity.class);
+                    startActivity(intentMap);
                 case R.id.navigation_account:
-                        Intent intent2 = new Intent(AboutActivity.this,AccountActivity.class);
-                        Intent intent4 = getIntent();
-                        String username = intent4.getStringExtra("USERNAME");
-                        intent2.putExtra("NAME",username);
-                        intent2.putExtra("AGE",age);
-                        intent2.putExtra("POINTS",points);
-                        intent2.putExtra("GENDER",gender);
-                        startActivity(intent2);
-                        return true;
+                    Intent intentAccount = new Intent(AboutActivity.this,AccountActivity.class);
+                    Intent intentGet = getIntent();
+                    String username = intentGet.getStringExtra("USERNAME");
+                    intentAccount.putExtra("NAME",username);
+                    intentAccount.putExtra("AGE",age);
+                    intentAccount.putExtra("POINTS",points);
+                    intentAccount.putExtra("GENDER",gender);
+                    startActivity(intentAccount);
+                case R.id.navigation_about:
+                    Toast.makeText(getApplicationContext(),"You are already on the about page",Toast.LENGTH_SHORT).show();
             }//switch
             return false;
         }//onNavigationItemSelected bool
     };//OnNavigationItemSelectedListener
-
 
 }//AboutActivity class
