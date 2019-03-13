@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_main"
+        android:icon="@drawable/ic_home"
+        android:title="Main"
+        app:labelVisibilityMode="labeled"
+        app:showAsAction="always"
+        />
 
     <item
         android:id="@+id/navigation_map"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_map"
         android:title="Map"
+        app:labelVisibilityMode="labeled"
+        app:showAsAction="always"
         />
 
 
     <item
         android:id="@+id/navigation_account"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="Account" />
+        android:icon="@drawable/ic_account"
+        android:title="Account"
+        app:labelVisibilityMode="labeled"
+        app:showAsAction="always"
+        />
 
     <item
         android:id="@+id/navigation_about"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="About" />
+        android:icon="@drawable/ic_pub"
+        android:title="About"
+        app:labelVisibilityMode="labeled"
+        app:showAsAction="always"
+        />
 
 </menu>

@@ -28,16 +28,16 @@ public class newAccountActivity extends AppCompatActivity {
             public void onClick(View v) {
                 validate(etPassword.getText().toString(),etPassword2.getText().toString(),etUsername.getText().toString());
             }
-        });
+        });//create account click listener
 
-    }
+    }//onCreate method
 
 
     void validate(String password, String password2, String username){
 
         if(password.length()<7){
             Toast.makeText(getApplicationContext(),"Password is not long enough",Toast.LENGTH_LONG).show();
-        }
+        }//if password is not long enough
         else {
             if (password.equals(password2)) {
                 Intent intent = new Intent(newAccountActivity.this, NavActivity.class);
@@ -46,7 +46,7 @@ public class newAccountActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(getApplicationContext(), "Passwords don't match", Toast.LENGTH_LONG).show();
 
-            }
-        }
-    }
-}
+            }//else passwords don't match
+        }//else if password is long enough
+    }//validate method
+}//newAccountActivity class

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 validate(name.getText().toString(),password.getText().toString());
             }
-        });
+        });//login listener
 
         newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, newAccountActivity.class);
                 startActivity(intent);
             }
-        });
+        });//newAccount listener
 
-    }
+    }//onCreate method
 
     void validate(String username, String userpassword){
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(counter==0){
                 login.setEnabled(false);
-            }
-        }
-    }
-}
+            }//inner if
+        }//outer if/else
+    }//validate method
+}//MainActivity
