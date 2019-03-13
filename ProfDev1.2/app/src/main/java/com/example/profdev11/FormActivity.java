@@ -1,5 +1,7 @@
 package com.example.profdev11;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,8 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -17,6 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
@@ -29,6 +36,8 @@ public class FormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+
+
 
         final TextView pId = findViewById(R.id.etPid);
         final TextView pName = findViewById(R.id.etPname);
@@ -47,6 +56,13 @@ public class FormActivity extends AppCompatActivity {
 
                 String url = "http://10.0.2.2:8010/pubspotter/api";
                 PerformPostCall(url, params);
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newPubCoordinates(pName, pStreetname, pPostcode);
             }
         });
     }
@@ -118,6 +134,32 @@ public class FormActivity extends AppCompatActivity {
             }
         }
         return result.toString();
+    }
+
+    //
+    public LatLng newPubCoordinates(TextView pName,TextView pStreetname, TextView pPostcode) {
+
+        float latitude = 0;
+        float longitude = 0;
+
+        List<Address> geocodeMatches = null;
+
+        try {
+            geocodeMatches =
+                    new Geocoder(this).getFromLocationName(
+                            " "+ pName + pStreetname + pPostcode, 1);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        if (!geocodeMatches.isEmpty()) {
+            latitude = (float) geocodeMatches.get(0).getLatitude();
+            longitude = (float) geocodeMatches.get(0).getLongitude();
+        }
+        LatLng pubLocation = new LatLng(latitude, longitude);
+        Toast.makeText(getApplicationContext(), "ping", Toast.LENGTH_LONG).show();
+        return pubLocation;
     }
 
 }
