@@ -69,7 +69,7 @@ public class NavActivity extends AppCompatActivity {
         tvPubLabel.setText(("You are near the following pubs: "));
 
 
-       /* //Making a http call
+        //Making a http call
         HttpURLConnection urlConnection;
         InputStream in = null;
         try {
@@ -146,7 +146,7 @@ public class NavActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-*/
+
     }
 
     public String convertStreamToString(InputStream is)
