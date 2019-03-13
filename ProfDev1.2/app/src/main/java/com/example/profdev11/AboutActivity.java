@@ -33,9 +33,11 @@ public class AboutActivity extends AppCompatActivity {
                 case R.id.navigation_main:
                     Intent intentNav = new Intent(AboutActivity.this,NavActivity.class);
                     startActivity(intentNav);
+                    return true;
                 case R.id.navigation_map:
                     Intent intentMap = new Intent(AboutActivity.this, MapsActivity.class);
                     startActivity(intentMap);
+                    return true;
                 case R.id.navigation_account:
                     Intent intentAccount = new Intent(AboutActivity.this,AccountActivity.class);
                     Intent intentGet = getIntent();
@@ -45,6 +47,7 @@ public class AboutActivity extends AppCompatActivity {
                     intentAccount.putExtra("POINTS",points);
                     intentAccount.putExtra("GENDER",gender);
                     startActivity(intentAccount);
+                    return true;
                 case R.id.navigation_about:
                     Toast.makeText(getApplicationContext(),"You are already on the about page",Toast.LENGTH_SHORT).show();
             }//switch
