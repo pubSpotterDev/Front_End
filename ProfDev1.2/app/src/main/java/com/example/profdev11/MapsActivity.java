@@ -3,8 +3,12 @@ package com.example.profdev11;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+<<<<<<< HEAD
 import android.location.Address;
 import android.location.Geocoder;
+=======
+import android.location.Location;
+>>>>>>> d9afe6d8f4fcd16cc18d7409544de2e615ace597
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -87,6 +91,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.add_pub:
                 Intent intent = new Intent(MapsActivity.this, FormActivity.class);
 
+<<<<<<< HEAD
+=======
+                //intent.putExtra("LATLANG",)
+>>>>>>> d9afe6d8f4fcd16cc18d7409544de2e615ace597
                 startActivity(intent);
                 return true;
             case R.id.check_in_pub:
@@ -118,6 +126,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //gets user location
         enableMyLocation();
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Home, Zoom));
+
+        //double currentLat = location.getLatitude();
+
+
 
 
         LatLng TheFootage = new LatLng(53.470, -2.236);

@@ -23,7 +23,7 @@
     <TextView
         android:id="@+id/tvGreeting"
         android:layout_width="333dp"
-        android:layout_height="119dp"
+        android:layout_height="62dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -32,15 +32,14 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.119" />
+        app:layout_constraintVertical_bias="0.044" />
 
     <TextView
         android:id="@+id/tvPoints"
         android:layout_width="329dp"
-        android:layout_height="120dp"
+        android:layout_height="82dp"
         android:layout_marginStart="102dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="103dp"
@@ -74,17 +73,16 @@
     <ListView
         android:id="@+id/lsPubs"
         android:layout_width="395dp"
-        android:layout_height="258dp"
+        android:layout_height="329dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPubLabel"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPubLabel" />
 
     <!--<FrameLayout
         android:id="@+id/fragment_container"
