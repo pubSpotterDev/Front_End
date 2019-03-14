@@ -24,7 +24,7 @@
     <TextView
         android:id="@+id/tvGreeting"
         android:layout_width="333dp"
-        android:layout_height="62dp"
+        android:layout_height="99dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -40,7 +40,7 @@
     <TextView
         android:id="@+id/tvPoints"
         android:layout_width="329dp"
-        android:layout_height="82dp"
+        android:layout_height="61dp"
         android:layout_marginStart="102dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="103dp"
@@ -52,7 +52,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGreeting"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.044" />
 
     <TextView
         android:id="@+id/tvPubLabel"
