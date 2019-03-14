@@ -56,15 +56,16 @@ public class FormActivity extends AppCompatActivity {
 
                 String url = "http://10.0.2.2:8010/pubspotter/api";
                 PerformPostCall(url, params);
-            }
-        });
-
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 newPubCoordinates(pName, pStreetname, pPostcode);
             }
         });
+
+//        add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                newPubCoordinates(pName, pStreetname, pPostcode);
+//            }
+//        });
     }
 
     public String PerformPostCall(String requestURL, HashMap<String, String> postDataParams) {
@@ -124,9 +125,9 @@ public class FormActivity extends AppCompatActivity {
         StringBuilder result = new StringBuilder();
         boolean first = true;
         for (Map.Entry<String, String> entry : params.entrySet()) {
-            if (first) {
+            if (first)
                 first = false;
-            } else {
+            else {
                 result.append("&");
                 result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
                 result.append("=");
