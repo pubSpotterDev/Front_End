@@ -41,7 +41,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private final int REQUEST_LOCATION_PERMISSION = 1;
 
-    //Hardcoded values to keep the navbar from breaking without dB integration
+    //Hardcoded values to keep the navbar from breaking without dB integration kek
     int points = 0;
     int age = 21;
     String gender = "male";
@@ -101,6 +101,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 return true;
             case R.id.check_in_pub:
                 Intent intent2 = new Intent(MapsActivity.this, CheckActivity.class);
+                intent2.putExtra("POINTS",points);
                 startActivity(intent2);
                 return true;
             //NavBar
