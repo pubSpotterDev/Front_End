@@ -127,12 +127,13 @@ public class FormActivity extends AppCompatActivity {
         for (Map.Entry<String, String> entry : params.entrySet()) {
             if (first)
                 first = false;
-            else {
+            else
                 result.append("&");
-                result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-                result.append("=");
-                result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-            }
+
+
+            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
         }
         return result.toString();
     }
