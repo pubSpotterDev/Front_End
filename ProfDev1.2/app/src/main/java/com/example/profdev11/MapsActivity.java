@@ -32,6 +32,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +46,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private GoogleMap mMap;
     private final int REQUEST_LOCATION_PERMISSION = 1;
+    private Location mUserLocation;
+    //private FusedLocationProviderClient fusedLocationClient;
 
 
     @Override
@@ -55,14 +59,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        //
+
+        //Location mLastLocation = (Location) .findTextViewByID(R.id.);
+
+        // Construct a FusedLocationProviderClient.
+        //fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
         // Construct a GeoDataClient.
        // mGeoDataClient = Places.getGeoDataClient(this, null);
 
         // Construct a PlaceDetectionClient.
        // mPlaceDetectionClient = Places.getPlaceDetectionClient(this, null);
 
-        // Construct a FusedLocationProviderClient.
-        //mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
 
     @Override
@@ -122,6 +132,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //gets user location
         enableMyLocation();
+        //LatLng Home = new LatLng(mUserLocation.getLatitude(), mUserLocation.getLongitude());
+
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Home, Zoom));
 
         //double currentLat = location.getLatitude();
@@ -189,8 +201,37 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-
-
-
-
+    /*private Task getLastLocation() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mMap.setMyLocationEnabled(true);
+            // LatLng UserLocation = new LatLng();
+            fusedLocationClient.getLastLocation().addOnSuccessListener(
+                    new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if (location != null) {
+                                mLastLocation = location;
+                                mLocationTextView.setText(
+                                        getString(R.string.location_text,
+                                                mLastLocation.getLatitude(),
+                                                mLastLocation.getLongitude(),
+                                                mLastLocation.getTime()));
+                            } else {
+                                mLocationTextView.setText(R.string.no_location);
+                            }
+                        }
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]
+                            {Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_LOCATION_PERMISSION);
+        }
+    }*/
 }
+
+
+
+
+
+
