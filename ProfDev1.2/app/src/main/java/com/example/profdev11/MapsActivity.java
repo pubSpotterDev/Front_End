@@ -100,11 +100,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 startActivity(intent);
                 return true;
             case R.id.check_in_pub:
-
                 Intent intent2 = new Intent(MapsActivity.this, CheckActivity.class);
                 intent2.putExtra("POINTS",points);
                 startActivity(intent2);
-
                 return true;
             //NavBar
             case R.id.navigation_main:
@@ -128,7 +126,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Intent intentAbout = new Intent(MapsActivity.this,AboutActivity.class);
                 startActivity(intentAbout);
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }//switch

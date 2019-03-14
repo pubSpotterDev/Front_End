@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:textColor="@color/colorText"
     tools:context=".CheckActivity">
 
     <TextView
@@ -17,6 +19,7 @@
         android:text="Check in Page"
         android:textAlignment="center"
         android:textSize="30sp"
+        android:textColor="@color/colorText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
