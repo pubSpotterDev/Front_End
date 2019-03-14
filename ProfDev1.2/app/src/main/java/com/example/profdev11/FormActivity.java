@@ -37,8 +37,6 @@ public class FormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-
-
         final TextView pId = findViewById(R.id.etPid);
         final TextView pName = findViewById(R.id.etPname);
         final TextView pStreetname = findViewById(R.id.etPstreetname);
