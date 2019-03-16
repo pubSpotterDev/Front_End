@@ -69,15 +69,15 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:textAlignment="textStart"
-        android:textSize="18sp"
         android:textColor="@color/colorText"
         android:textColorHint="@color/colorText"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPoints"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <ListView
         android:id="@+id/lsPubs"
@@ -93,7 +93,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPubLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPubLabel"
+        app:layout_constraintVertical_bias="0.254" />
 
     <!--<FrameLayout
         android:id="@+id/fragment_container"
