@@ -35,11 +35,15 @@ public class MainActivity extends AppCompatActivity {
     Button login;
     Button newAccount;
     int counter = 5;
-
+    int [] Id;
+    int [] Points;
     String [] Name;
     String [] Gender;
+    String [] Email;
+    String [] Dob;
+    String [] Password;
 
-    ArrayList<Pub> allUsers = new ArrayList<>();
+    ArrayList<User> allUsers = new ArrayList<>();
     List<Map<String, String>> data = new ArrayList<>();
 
     @Override
@@ -77,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
         });//newAccount listener
 
         //Making a http call
-        /*HttpURLConnection urlConnection;
+        HttpURLConnection urlConnection;
         InputStream in = null;
         try {
             // the url we wish to connect to
-            URL url = new URL("http://10.0.2.2:8010/pubspotter/api");
+            URL url = new URL("http://10.0.2.2:8010/pubspotter/userapi");
             // open the connection to the specified URL
             urlConnection = (HttpURLConnection) url.openConnection();
             // get the response from the server in an input stream
@@ -103,74 +107,81 @@ public class MainActivity extends AppCompatActivity {
             // to the amount of cheese object returned by the server
             Name = new String[jsonArray.length()];
             Gender = new String[jsonArray.length()];
-            //Postcode = new String[jsonArray.length()];
+            Email = new String[jsonArray.length()];
+            Dob = new String[jsonArray.length()];
+            Password = new String[jsonArray.length()];
+            Points = new int[jsonArray.length()];
+
 
             // use a for loop to iterate over the JSON array
             for (int i = 0; i < jsonArray.length(); i++) {
                 // the following line of code will get the name of the cheese from the
                 // current JSON object and store it in a string variable called name
-                Integer pub_id = jsonArray.getJSONObject(i).getInt("pub_id");
+                Integer id = jsonArray.getJSONObject(i).getInt("id");
+                Integer points = jsonArray.getJSONObject(i).getInt("points");
                 String name = jsonArray.getJSONObject(i).get("name").toString();
-                String streetname = jsonArray.getJSONObject(i).get("streetname").toString();
-                String postcode = jsonArray.getJSONObject(i).get("postcode").toString();
+                String email = jsonArray.getJSONObject(i).get("email").toString();
+                String dob = jsonArray.getJSONObject(i).get("dob").toString();
+                String gender = jsonArray.getJSONObject(i).get("gender").toString();
+                String password = jsonArray.getJSONObject(i).get("password").toString();
 
                 // print the name to log cat
-                System.out.print("ID = " + id);
-                System.out.print("password = " + gender);
-                //System.out.println("Street Name = " + streetname);
-                //System.out.println("Postcode = " + postcode);
+                System.out.println("ID = " + id);
+                System.out.println("email = " + email);
+                System.out.println("name = " + name);
+                System.out.println("dob = " + dob);
+                System.out.println("gender = " + gender);
+                System.out.println("points = " + points);
+                System.out.println("password = " + password);
 
                 // add the name of the current vehicles to the vehicleNames array
 
+                //Id[i] = id;
+                Email[i] = email;
                 Name[i] = name;
-                //Street_Name[i] = streetname;
-                //Postcode[i] = postcode;
+                Dob[i] = dob;
+                Gender[i] = gender;
+                Points[i] = points;
+                Password[i] = password;
 
-                String NS = String.format("%s %s",name, streetname);
+
+                String NS = String.format("%s %s",name, password);
 
                 // print the name to log cat
                 System.out.println("Name = " + name);
 
-                User p = new User(id,email,name,dob,gender,points);
+                User p = new User(id,email,name,dob,gender,points,password);
                 allUsers.add(p);
 
                 //Adapter Data For List View
-                Map<String, String> datum = new HashMap<>(2);
-                datum.put("Name_StreetN", NS);
-                datum.put("Postcode", postcode);
-                data.add(datum);
 
-
-                final ListView PubList = findViewById(R.id.lsPubs);
-                SimpleAdapter adapter = new SimpleAdapter(this, data, android.R.layout.simple_list_item_2, new String[]{"Name_Street", "Postcode"}, new int[]{android.R.id.text1, android.R.id.text2}) {
-                    public View getView(int position, View convertView, ViewGroup parent) {
-                        View view = super.getView(position, convertView, parent);
-                        return view;
-                    }
-                };
-                PubList.setAdapter(adapter);
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        }*/
+        }
 
     }//onCreate method
 
-    void validate(String username, String userpassword){
+     boolean validate(String username, String userpassword){
 
-        if(username.equals("admin") && userpassword.equals("kings123")){
-            Intent intent = new Intent(MainActivity.this, NavActivity.class);
-            intent.putExtra("USERNAME",username);
-            startActivity(intent);
-        }else{
-            counter--;
-            info.setText("Remaining attempts: "+String.valueOf(counter));
-            Toast.makeText(getApplicationContext(),"Username or Password is wrong",Toast.LENGTH_LONG).show();
+        //JSONArray jsonArray = new JSONArray(response);
+        for (int i = 0; i < allUsers.size(); i++) {
+            if((username.equals(allUsers.get(i).getEmail())) && (userpassword.equals(allUsers.get(i).getPassword()))){
 
-            if(counter==0){
-                login.setEnabled(false);
-            }//inner if
-        }//outer if/else
+                Intent intent = new Intent(MainActivity.this, NavActivity.class);
+                intent.putExtra("USERNAME",username);
+                startActivity(intent);
+                return true;
+            }
+        }
+         counter--;
+         info.setText("Remaining attempts: "+String.valueOf(counter));
+         Toast.makeText(getApplicationContext(),"Username or Password is wrong",Toast.LENGTH_LONG).show();
+         if(counter==0){
+             login.setEnabled(false);
+         }//inner if
+
+        return false;
     }//validate method
 
     public String convertStreamToString(InputStream is)
