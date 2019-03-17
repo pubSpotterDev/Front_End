@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     Button login;
     Button newAccount;
     int counter = 5;
-    int [] Id;
     int [] Points;
     String [] Name;
     String [] Gender;
@@ -169,7 +168,8 @@ public class MainActivity extends AppCompatActivity {
             if((username.equals(allUsers.get(i).getEmail())) && (userpassword.equals(allUsers.get(i).getPassword()))){
 
                 Intent intent = new Intent(MainActivity.this, NavActivity.class);
-                intent.putExtra("USERNAME",username);
+                //intent.putExtra("USERNAME",username);
+                intent.putExtra("USER",allUsers.get(i));
                 startActivity(intent);
                 return true;
             }

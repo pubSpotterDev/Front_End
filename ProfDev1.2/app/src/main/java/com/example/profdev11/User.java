@@ -1,6 +1,12 @@
 package com.example.profdev11;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class User implements Serializable {
+
     private String email,name,gender, dob, password;
 
     private int id, points;
