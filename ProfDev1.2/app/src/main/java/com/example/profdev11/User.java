@@ -1,8 +1,6 @@
 package com.example.profdev11;
-
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.io.Serializable;
 
 public class User implements Serializable {
