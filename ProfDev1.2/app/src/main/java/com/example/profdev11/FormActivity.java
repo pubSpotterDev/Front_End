@@ -68,7 +68,7 @@ public class FormActivity extends AppCompatActivity {
                 String url2 = "http://10.0.2.2:8010/pubspotter/userapi";
                 //PerformPostCall2(url,params);
 
-//                newPubCoordinates(pName, pStreetname, pPostcode);
+                newPubCoordinates(pName, pStreetname, pPostcode);
             }
         });
 
