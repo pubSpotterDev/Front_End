@@ -140,15 +140,17 @@ public class FormActivity extends AppCompatActivity {
     //to retrieve the coordinates of the location
     public LatLng newPubCoordinates(TextView pName,TextView pStreetname, TextView pPostcode) {
 
-        float latitude = 0;
-        float longitude = 0;
+        float latitude;
+        float longitude;
+        LatLng tempLocation = new LatLng(0.0, 0.0);
+        final String address = "" + pName.getText().toString() + pStreetname.getText().toString() + pPostcode.getText().toString();
 
         List<Address> geocodeMatches = null;
 
         try {
             geocodeMatches =
                     new Geocoder(this).getFromLocationName(
-                            " "+ pName + pStreetname + pPostcode, 1);
+                            "" + address , 1);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -157,10 +159,18 @@ public class FormActivity extends AppCompatActivity {
         if (!geocodeMatches.isEmpty()) {
             latitude = (float) geocodeMatches.get(0).getLatitude();
             longitude = (float) geocodeMatches.get(0).getLongitude();
+            LatLng pubLocation = new LatLng(latitude, longitude);
+            Toast.makeText(getApplicationContext(), " " + pubLocation , Toast.LENGTH_LONG).show();
+            Intent intentBackToMap = new Intent(FormActivity.this, MapsActivity.class);
+            intentBackToMap.putExtra("newPub", pubLocation);
+            startActivity(intentBackToMap);
+            return pubLocation;
+
         }
-        LatLng pubLocation = new LatLng(latitude, longitude);
-        Toast.makeText(getApplicationContext(), "ping", Toast.LENGTH_LONG).show();
-        return pubLocation;
+        else {
+            Toast.makeText(getApplicationContext(), "No matches" , Toast.LENGTH_LONG).show();
+            return tempLocation;
+        }
     }
 
 }

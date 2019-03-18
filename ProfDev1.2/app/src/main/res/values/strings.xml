@@ -15,4 +15,6 @@
     <string name="dropped_pin">Dropped Pin</string>
     <string name="add_pub">Add Pub</string>
     <string name="check_in_pub">Check In</string>
+    <string name="no_location">No Location</string>
+
 </resources>
