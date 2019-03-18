@@ -40,6 +40,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -53,7 +54,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -137,22 +137,27 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Home, Zoom));
 
         //double currentLat = location.getLatitude();
+        String pubNames[] = {"The Footage", "The Temple", "The GasWorks Brewbar", "Be At One", "The Deaf Institute"};
+        LatLng pubLocations[] = {new LatLng(53.470, -2.236), new LatLng(53.475, -2.242),
+                new LatLng(53.473, -2.246), new LatLng(53.482, -2.246),
+                new LatLng(53.470, -2.236)};
+
+        for(int i = 0; i < pubNames.length-1; i++)
+        {
+            mMap.addMarker(new MarkerOptions()
+                    .position(pubLocations[i])
+                    .title(pubNames[i])
+                    .snippet("PUB"));
+        }
 
 
-
-
-        LatLng TheFootage = new LatLng(53.470, -2.236);
+/*        LatLng TheFootage = new LatLng(53.470, -2.236);
         LatLng TheTemple = new LatLng(53.475, -2.242);
         LatLng TheGasWorksBrewbar = new LatLng(53.473, -2.246);
-        LatLng BeAtOne = new LatLng(53.482, -2.246);
+        LatLng BeAtOne = new LatLng(53.482, -2.246);*/
 
-
-        mMap.addMarker(new MarkerOptions()
-                .position(TheFootage)
-                .title("The Footage")
-                .snippet("126 Grosvenor Street, Manchester, M1 7HL"));
-        mMap.addMarker(new MarkerOptions()
-                .position(TheTemple)
+        /*mMap.addMarker(new MarkerOptions()
+                .position()
                 .title("The Temple")
                 .snippet("100 Great Bridgewater Street, Manchester, M1 5JW"));
         mMap.addMarker(new MarkerOptions()
@@ -162,9 +167,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.addMarker(new MarkerOptions()
                 .position(BeAtOne)
                 .title("Be At One")
-                .snippet("Barton Arcade, Deansgate, Manchester, M3 2BW"));
-
-
+                .snippet("Barton Arcade, Deansgate, Manchester, M3 2BW"));*/
 
     }
 

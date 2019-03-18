@@ -65,6 +65,7 @@ public class FormActivity extends AppCompatActivity {
                 newPubCoordinates(pName, pStreetname, pPostcode);
             }
         });
+
     }
 
     public String PerformPostCall(String requestURL, HashMap<String, String> postDataParams) {
@@ -161,6 +162,9 @@ public class FormActivity extends AppCompatActivity {
             longitude = (float) geocodeMatches.get(0).getLongitude();
             LatLng pubLocation = new LatLng(latitude, longitude);
             Toast.makeText(getApplicationContext(), " " + pubLocation , Toast.LENGTH_LONG).show();
+            Intent intentBackToMap = new Intent(FormActivity.this, MapsActivity.class);
+            intentBackToMap.putExtra("newPub", pubLocation);
+            startActivity(intentBackToMap);
             return pubLocation;
 
         }
