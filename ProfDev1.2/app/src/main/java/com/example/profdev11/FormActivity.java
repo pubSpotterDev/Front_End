@@ -51,7 +51,8 @@ public class FormActivity extends AppCompatActivity {
         int points = intent.getIntExtra("POINTS",10);
         final String dob = intent.getStringExtra("DOB");
         final String password = intent.getStringExtra("PASSWORD");
-        final String id = Integer.toString(intent.getIntExtra("ID",10));
+        //final String id = Integer.toString(intent.getIntExtra("ID",10));
+        final String id = intent.getStringExtra("ID");
         points ++;
         final String points2 =Integer.toString(points);
 
@@ -63,27 +64,23 @@ public class FormActivity extends AppCompatActivity {
                 params.put("streetname", pStreetname.getText().toString());
                 params.put("postcode", pPostcode.getText().toString());
 
-               /* params.put("points",points2);
-                params.put("email",username);
-                params.put("gender",gender);
-                params.put("dob",dob);
-                params.put("password",password);
-                params.put("id",id);*/
+//                params.put("points",points2);
+//                params.put("email",username);
+//                params.put("gender",gender);
+//                params.put("dob",dob);
+//                params.put("password",password);
+//                params.put("id",id);
 
                 String url = "http://10.0.2.2:8010/pubspotter/api";
                 PerformPostCall(url, params);
+
                 //String url2 = "http://10.0.2.2:8010/pubspotter/userapi";
-                //PerformPut(url,params);
+                //PerformPut(url2,params);
 
                 newPubCoordinates(pName, pStreetname, pPostcode);
             }
         });
 
-    }
-
-    public  String PerformPut(String requestURL, HashMap<String, String> postDataParams){
-
-        return null;
     }
 
     public String PerformPostCall(String requestURL, HashMap<String, String> postDataParams) {
@@ -137,6 +134,58 @@ public class FormActivity extends AppCompatActivity {
         System.out.println("response = " + response);
         return response;
     }
+
+//    public  String PerformPut(String requestURL, HashMap<String, String> postDataParams){
+//        URL url2;
+//        String response = "";
+//        try {
+//            url2 = new URL(requestURL);
+//            //Create the connection object
+//            HttpURLConnection conn = (HttpURLConnection) url2.openConnection();
+//            conn.setReadTimeout(15000);
+//            conn.setConnectTimeout(15000);
+//            conn.setRequestMethod("PUT");
+//            conn.setDoInput(true);
+//            conn.setDoOutput(true);
+//
+//            //Write/send/POST dara to the connection using output stream and buffered writer
+//            OutputStream os = conn.getOutputStream();
+//            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+//
+//            //Write/send/Post key/value data (url encoded) to the server
+//            writer.write(getPostDataString(postDataParams));
+//
+//            //clear the writer
+//            writer.flush();
+//            writer.close();
+//
+//            //close the output stream
+//            os.close();
+//
+//            //get the server response code to determine what to do next (ie success/error)
+//            int responseCode = conn.getResponseCode();
+//            System.out.println("Response code = " + responseCode);
+//
+//            if (responseCode == HttpsURLConnection.HTTP_OK) {
+//                Intent Return = new Intent(FormActivity.this, MainActivity.class);
+//                FormActivity.this.startActivity(Return);
+//
+//                Toast.makeText(this, "You've earned 10 points!", Toast.LENGTH_LONG).show();
+//                String line;
+//                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+//                while ((line = br.readLine()) != null) {
+//                    response += line;
+//                }
+//            } else {
+//                Toast.makeText(this, "Error failed to update Points", Toast.LENGTH_LONG).show();
+//                response = "";
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("response = " + response);
+//        return response;
+//    }
 
     //This method converts a hashmap to a URL query string of key/value pairs
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
