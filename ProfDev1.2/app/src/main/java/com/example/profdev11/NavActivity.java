@@ -39,7 +39,7 @@ public class NavActivity extends AppCompatActivity {
      String [] Street_Name;
      String [] Postcode;
      int points;
-     String email, name, dob, gender, gender2;
+     String email, name, dob, gender, gender2, username;
 
 
 
@@ -63,7 +63,7 @@ public class NavActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         User user = (User)intent.getSerializableExtra("USER");
-        String username = user.getName();
+        username = user.getName();
         points = user.getPoints();
         email = user.getEmail();
         dob = user.getDob();

@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
             // this will convert the string into a JSON array which we can then iterate
             // over using a loop
             JSONArray jsonArray = new JSONArray(response);
-            // instantiate the cheeseNames array and set the size
-            // to the amount of cheese object returned by the server
+            // instantiate the Users array and set the size
+            // to the amount of user object returned by the server
             Name = new String[jsonArray.length()];
             Gender = new String[jsonArray.length()];
             Email = new String[jsonArray.length()];
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
             // use a for loop to iterate over the JSON array
             for (int i = 0; i < jsonArray.length(); i++) {
-                // the following line of code will get the name of the cheese from the
+                // the following line of code will get the name of the user from the
                 // current JSON object and store it in a string variable called name
                 Integer id = jsonArray.getJSONObject(i).getInt("id");
                 Integer points = jsonArray.getJSONObject(i).getInt("points");
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("points = " + points);
                 System.out.println("password = " + password);
 
-                // add the name of the current vehicles to the vehicleNames array
+                // add the name of the current vehicles to the array
 
                 //Id[i] = id;
                 Email[i] = email;
