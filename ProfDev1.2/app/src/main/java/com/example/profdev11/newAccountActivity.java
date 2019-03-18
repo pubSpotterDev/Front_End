@@ -25,8 +25,11 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class newAccountActivity extends AppCompatActivity {
 
-    EditText etID, etEmail, etPassword, etPassword2, etName, etGender, etDOB, etPoints;
+    //EditText etID, etEmail, etPassword, etPassword2, etName, etGender, etDOB, etPoints;
     Button btnCreate;
+    //String email,name,dob,password;
+    //int points, id;
+    //User p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,20 @@ public class newAccountActivity extends AppCompatActivity {
         final TextView etPoints = findViewById(R.id.etPoints);
         final TextView etPassword = findViewById(R.id.etPassword);
         final TextView etPassword2 = findViewById(R.id.etPassword2);
+
+
+
+       // p.setName(etName.toString());
+        //p.getPoints(Integer.toString(etPoints));
+         /*id = etID.;
+         etEmail = findViewById(R.id.etEmail);
+         etName = findViewById(R.id.etName);
+         etGender = findViewById(R.id.etGender);
+         etDOB = findViewById(R.id.etDOB);
+         etPoints = findViewById(R.id.etPoints);
+         etPassword = findViewById(R.id.etPassword);*/
+
+
         btnCreate = findViewById(R.id.btnCreate);
 
         final HashMap<String, String> params = new HashMap<>();
@@ -71,8 +88,7 @@ public class newAccountActivity extends AppCompatActivity {
         }//if password is not long enough
         else {
             if (password.equals(password2)) {
-                Intent intent = new Intent(newAccountActivity.this, NavActivity.class);
-                intent.putExtra("EMAIL", email);
+                Intent intent = new Intent(newAccountActivity.this, MainActivity.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), "Passwords don't match", Toast.LENGTH_LONG).show();
