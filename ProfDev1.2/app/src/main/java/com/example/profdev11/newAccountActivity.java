@@ -36,12 +36,12 @@ public class newAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_account);
 
-        final TextView etID = findViewById(R.id.etID);
+        final String etID = "10";
         final TextView etEmail = findViewById(R.id.etEmail);
         final TextView etName = findViewById(R.id.etName);
         final TextView etGender = findViewById(R.id.etGender);
         final TextView etDOB = findViewById(R.id.etDOB);
-        final TextView etPoints = findViewById(R.id.etPoints);
+        final String etPoints = "0";
         final TextView etPassword = findViewById(R.id.etPassword);
         final TextView etPassword2 = findViewById(R.id.etPassword2);
 
@@ -63,12 +63,12 @@ public class newAccountActivity extends AppCompatActivity {
         final HashMap<String, String> params = new HashMap<>();
         btnCreate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                params.put("id", etID.getText().toString());
+                params.put("id", etID);
                 params.put("email", etEmail.getText().toString());
                 params.put("name", etName.getText().toString());
                 params.put("gender", etGender.getText().toString());
                 params.put("dob", etDOB.getText().toString());
-                params.put("points", etPoints.getText().toString());
+                params.put("points", etPoints);
                 params.put("password", etPassword.getText().toString());
 
 

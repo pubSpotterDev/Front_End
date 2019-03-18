@@ -39,7 +39,7 @@ public class NavActivity extends AppCompatActivity {
      String [] Street_Name;
      String [] Postcode;
      int points;
-     String email, name, dob, gender, gender2, username;
+     String email, dob, gender, username;
 
 
 
@@ -68,6 +68,7 @@ public class NavActivity extends AppCompatActivity {
         email = user.getEmail();
         dob = user.getDob();
         gender = user.getGender();
+
         //gender2 = gender;
 
 
@@ -178,20 +179,26 @@ public class NavActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_map:
                     Intent intentMap = new Intent(NavActivity.this, MapsActivity.class);
+                    intentMap.putExtra("POINTS",points);
+                    intentMap.putExtra("GENDER",gender);
+                    intentMap.putExtra("DOB",dob);
+                    intentMap.putExtra("EMAIL",email);
+                    intentMap.putExtra("USERNAME",username);
                     startActivity(intentMap);
                     return true;
                 case R.id.navigation_account:
                     Intent intentAccount = new Intent(NavActivity.this, AccountActivity.class);
-                    Intent intent4 = getIntent();
-                    intent4.putExtra("POINTS",points);
-                    intent4.putExtra("GENDER",gender2);
-                    intent4.putExtra("DOB",dob);
-                    intent4.putExtra("EMAIL",email);
-                    intent4.putExtra("USERNAME",name);
+                    intentAccount.putExtra("POINTS",points);
+                    intentAccount.putExtra("GENDER",gender);
+                    intentAccount.putExtra("DOB",dob);
+                    intentAccount.putExtra("EMAIL",email);
+                    intentAccount.putExtra("USERNAME",username);
+                    //Bundle b = intentAccount.getExtras();
                     startActivity(intentAccount);
                     return true;
                 case R.id.navigation_about:
                     Intent intentAbout = new Intent(NavActivity.this,AboutActivity.class);
+
                     startActivity(intentAbout);
                     return true;
             }//switch
