@@ -11,18 +11,22 @@
     <TextView
         android:id="@+id/tvLabel"
         android:layout_width="262dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="72dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="76dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Add New Pub"
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textColorHint="@color/colorText"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintVertical_bias="0.275" />
 
 
     <EditText
@@ -35,15 +39,14 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Pub Name"
+        android:inputType="textPersonName"
         android:textColor="@color/colorText"
         android:textColorHint="@color/colorText"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLabel"
-        app:layout_constraintVertical_bias="0.311" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <EditText
         android:id="@+id/etPstreetname"
@@ -55,15 +58,14 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Pub Steet Name"
+        android:inputType="textPersonName"
         android:textColor="@color/colorText"
         android:textColorHint="@color/colorText"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLabel"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.278" />
 
     <EditText
         android:id="@+id/etPpostcode"
@@ -82,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLabel"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintVertical_bias="0.446" />
 
     <Button
         android:id="@+id/btnadd"
@@ -97,7 +99,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPpostcode" />
+        app:layout_constraintTop_toBottomOf="@+id/etPpostcode"
+        app:layout_constraintVertical_bias="0.209" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="169dp"
+        android:layout_height="143dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pint" />
 
 
 </android.support.constraint.ConstraintLayout>
