@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -39,7 +40,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private final int REQUEST_LOCATION_PERMISSION = 1;
@@ -157,32 +158,43 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
         LatLng Home = new LatLng(53.470407, -2.239145);
         float Zoom = (float)15.00;
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Home, Zoom));
 
         //gets user location
         enableMyLocation();
-        //LatLng Home = new LatLng(mUserLocation.getLatitude(), mUserLocation.getLongitude());
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Home, Zoom));
-
-        //double currentLat = location.getLatitude();
-        String pubNames[] = {"The Footage", "The Temple", "The GasWorks Brewbar", "Be At One", "The Deaf Institute"};
-        LatLng pubLocations[] = {new LatLng(53.470, -2.236), new LatLng(53.475, -2.242),
-                new LatLng(53.473, -2.246), new LatLng(53.482, -2.246),
+        //pub names and locations
+        String pubName[] = {"The Footage", "The Temple", "The GasWorks Brewbar", "Be At One", "The Deaf Institute"};
+        LatLng pubLocation[] = {new LatLng(53.470, -2.236), new LatLng(53.475, -2.242),
+        new LatLng(53.473, -2.246), new LatLng(53.482, -2.246),
                 new LatLng(53.470, -2.236)};
 
-        for(int i = 0; i < pubNames.length-1; i++)
-        {
+        for (int i = 0; i < pubName.length; i++) {
             mMap.addMarker(new MarkerOptions()
-                    .position(pubLocations[i])
-                    .title(pubNames[i])
-                    .snippet("PUB"));
+                    .position(pubLocation[i])
+                    .title(pubName[i]));
+                    //.snippet("PUB"));
         }
 
+        //gets added pub info from form activity
+        Intent intentBackToMap = getIntent();
+        boolean pubAdded = intentBackToMap.getBooleanExtra("pubAdded", false);
+        addNewPub(pubAdded);
 
-/*        LatLng TheFootage = new LatLng(53.470, -2.236);
-        LatLng TheTemple = new LatLng(53.475, -2.242);
-        LatLng TheGasWorksBrewbar = new LatLng(53.473, -2.246);
-        LatLng BeAtOne = new LatLng(53.482, -2.246);*/
+
+        //add new pub info to pub name and location
+
+        //display pubs as markers
+
+
+//        pubName.add(newPubName);
+
+//        ArrayList<PubMarker> allPubMarkers = new ArrayList<>();
+ //       PubMarker pm  = new PubMarker(pubName, pubLocation);
+   //     allPubMarkers.add(pm);
+
+
+
 
         /*mMap.addMarker(new MarkerOptions()
                 .position()
@@ -230,6 +242,44 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     REQUEST_LOCATION_PERMISSION);
         }//location access if/else
     }//enableMyLocation method
+/*
+    private class PubMarker extends MapsActivity{
+
+        private PubMarker(String pubName[], LatLng pubLocation[]) {
+            this.pubName = pubName;
+            this.pubLocation = pubLocation;
+        }
+
+
+    }*/
+    public void addNewPub(boolean pubAdded){
+        if (pubAdded == true) {
+            Intent intentBackToMap = getIntent();
+            String newPubName = intentBackToMap.getStringExtra("newPubName");
+            Float newPubLatitude = intentBackToMap.getFloatExtra("newPubLatitude", 0);
+            Float newPubLongitude = intentBackToMap.getFloatExtra("newPubLongitude", 0);
+            LatLng newPubLocation = new LatLng(newPubLatitude, newPubLongitude);
+            mMap.addMarker(new MarkerOptions().position(newPubLocation).title(newPubName));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(newPubLocation, (float)17.00));
+        }
+    }
+
+ /*   private void setMarkers(String[] pubName, LatLng[] pubLocation) {
+        for (int i = 0; i < pubName.length; i++) {
+            mMap.addMarker(new MarkerOptions()
+                    .position(pubLocation[i])
+                    .title(pubName[i])
+                    .snippet("PUB"));
+        }
+    }*/
+
+
+
+
+
+
+
+    }
 
 /**
     //NavBar DEPRECATED - now integrated into top menu
@@ -263,4 +313,4 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }//onNavigationItemSelected bool
     };//OnNavigationItemSelectedListener
 */
-}//MapsActivity class
+//MapsActivity class
