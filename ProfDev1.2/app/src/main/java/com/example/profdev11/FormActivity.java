@@ -79,12 +79,6 @@ public class FormActivity extends AppCompatActivity {
             }
         });
 
-//        add.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                newPubCoordinates(pName, pStreetname, pPostcode);
-//            }
-//        });
     }
 
     public  String PerformPut(String requestURL, HashMap<String, String> postDataParams){
@@ -183,12 +177,16 @@ public class FormActivity extends AppCompatActivity {
         }
 
         if (!geocodeMatches.isEmpty()) {
+            boolean pubAdded = true;
             latitude = (float) geocodeMatches.get(0).getLatitude();
             longitude = (float) geocodeMatches.get(0).getLongitude();
             LatLng pubLocation = new LatLng(latitude, longitude);
             Toast.makeText(getApplicationContext(), " " + pubLocation , Toast.LENGTH_LONG).show();
             Intent intentBackToMap = new Intent(FormActivity.this, MapsActivity.class);
-            intentBackToMap.putExtra("newPub", pubLocation);
+            intentBackToMap.putExtra("newPubName", pName.getText().toString());
+            intentBackToMap.putExtra("newPubLatitude", latitude);
+            intentBackToMap.putExtra("newPubLongitude", longitude);
+            intentBackToMap.putExtra("pubAdded", true);
             startActivity(intentBackToMap);
             return pubLocation;
 
