@@ -46,8 +46,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private final int REQUEST_LOCATION_PERMISSION = 1;
     private Location mUserLocation;
 
-    int points;
-    String email, dob, gender, username;
+    int points,id;
+    String email, dob, gender, username, password;
     //private FusedLocationProviderClient fusedLocationClient;
 
     //Hardcoded values to keep the navbar from breaking without dB integration kek
@@ -65,7 +65,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         String username = intent.getStringExtra("USERNAME");
         String gender = intent.getStringExtra("GENDER");
         int points = intent.getIntExtra("POINTS",10);
-        String age = intent.getStringExtra("DOB");
+        String dob = intent.getStringExtra("DOB");
+        String password = intent.getStringExtra("PASSWORD");
+        int id = intent.getIntExtra("ID",10);
 
         //
 
@@ -117,6 +119,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 //CHANGE THESE ACTIVITY POINTERS WHEN THE FORMS ARE MADE
             case R.id.add_pub:
                 Intent intent = new Intent(MapsActivity.this, FormActivity.class);
+                intent.putExtra("USERNAME",username);
+                intent.putExtra("EMAIL",email);
+                intent.putExtra("DOB",dob);
+                intent.putExtra("GENDER",gender);
+                intent.putExtra("PASSWORD",password);
+                intent.putExtra("ID",id);
                 startActivity(intent);
                 return true;
             case R.id.check_in_pub:
@@ -135,11 +143,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.navigation_account:
                 Intent intentAccount = new Intent(MapsActivity.this,AccountActivity.class);
                 Intent intentGet = getIntent();
-                String username = intentGet.getStringExtra("USERNAME");
+                //String username = intentGet.getStringExtra("USERNAME");
                 intentAccount.putExtra("NAME",username);
                 intentAccount.putExtra("DOB",dob);
                 intentAccount.putExtra("POINTS",points);
                 intentAccount.putExtra("GENDER",gender);
+                //intent
                 startActivity(intentAccount);
                 return true;
             case R.id.navigation_about:

@@ -46,10 +46,12 @@ public class FormActivity extends AppCompatActivity {
         final TextView pPostcode = findViewById(R.id.etPpostcode);
         add = findViewById(R.id.btnadd);
         Intent intent = getIntent();
-        String username = intent.getStringExtra("USERNAME");
-        String gender = intent.getStringExtra("GENDER");
+        final String username = intent.getStringExtra("USERNAME");
+        final String gender = intent.getStringExtra("GENDER");
         int points = intent.getIntExtra("POINTS",10);
-        String age = intent.getStringExtra("DOB");
+        final String dob = intent.getStringExtra("DOB");
+        final String password = intent.getStringExtra("PASSWORD");
+        final String id = Integer.toString(intent.getIntExtra("ID",10));
         points ++;
         final String points2 =Integer.toString(points);
 
@@ -61,12 +63,17 @@ public class FormActivity extends AppCompatActivity {
                 params.put("streetname", pStreetname.getText().toString());
                 params.put("postcode", pPostcode.getText().toString());
 
-                params.put("points",points2);
+               /* params.put("points",points2);
+                params.put("email",username);
+                params.put("gender",gender);
+                params.put("dob",dob);
+                params.put("password",password);
+                params.put("id",id);*/
 
                 String url = "http://10.0.2.2:8010/pubspotter/api";
                 PerformPostCall(url, params);
-                String url2 = "http://10.0.2.2:8010/pubspotter/userapi";
-                //PerformPostCall2(url,params);
+                //String url2 = "http://10.0.2.2:8010/pubspotter/userapi";
+                //PerformPut(url,params);
 
 //                newPubCoordinates(pName, pStreetname, pPostcode);
             }
@@ -78,6 +85,11 @@ public class FormActivity extends AppCompatActivity {
 //                newPubCoordinates(pName, pStreetname, pPostcode);
 //            }
 //        });
+    }
+
+    public  String PerformPut(String requestURL, HashMap<String, String> postDataParams){
+
+        return null;
     }
 
     public String PerformPostCall(String requestURL, HashMap<String, String> postDataParams) {

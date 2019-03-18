@@ -38,8 +38,8 @@ public class NavActivity extends AppCompatActivity {
      String [] Name;
      String [] Street_Name;
      String [] Postcode;
-     int points;
-     String email, dob, gender, username;
+     int points,id;
+     String email, dob, gender, username, password;
 
 
 
@@ -68,6 +68,8 @@ public class NavActivity extends AppCompatActivity {
         email = user.getEmail();
         dob = user.getDob();
         gender = user.getGender();
+        password = user.getPassword();
+        id = user.getId();
 
         //gender2 = gender;
 
@@ -184,6 +186,8 @@ public class NavActivity extends AppCompatActivity {
                     intentMap.putExtra("DOB",dob);
                     intentMap.putExtra("EMAIL",email);
                     intentMap.putExtra("USERNAME",username);
+                    intentMap.putExtra("PASSWORD",password);
+                    intentMap.putExtra("ID",id);
                     startActivity(intentMap);
                     return true;
                 case R.id.navigation_account:
