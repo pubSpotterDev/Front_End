@@ -25,33 +25,50 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class newAccountActivity extends AppCompatActivity {
 
-    EditText etID, etEmail, etPassword, etPassword2, etName, etGender, etDOB, etPoints;
+    //EditText etID, etEmail, etPassword, etPassword2, etName, etGender, etDOB, etPoints;
     Button btnCreate;
+    //String email,name,dob,password;
+    //int points, id;
+    //User p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_account);
 
-        final TextView etID = findViewById(R.id.etID);
+        final String etID = "10";
         final TextView etEmail = findViewById(R.id.etEmail);
         final TextView etName = findViewById(R.id.etName);
         final TextView etGender = findViewById(R.id.etGender);
         final TextView etDOB = findViewById(R.id.etDOB);
-        final TextView etPoints = findViewById(R.id.etPoints);
+        final String etPoints = "0";
         final TextView etPassword = findViewById(R.id.etPassword);
         final TextView etPassword2 = findViewById(R.id.etPassword2);
+
+
+
+       // p.setName(etName.toString());
+        //p.getPoints(Integer.toString(etPoints));
+         /*id = etID.;
+         etEmail = findViewById(R.id.etEmail);
+         etName = findViewById(R.id.etName);
+         etGender = findViewById(R.id.etGender);
+         etDOB = findViewById(R.id.etDOB);
+         etPoints = findViewById(R.id.etPoints);
+         etPassword = findViewById(R.id.etPassword);*/
+
+
         btnCreate = findViewById(R.id.btnCreate);
 
         final HashMap<String, String> params = new HashMap<>();
         btnCreate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                params.put("id", etID.getText().toString());
+                params.put("id", etID);
                 params.put("email", etEmail.getText().toString());
                 params.put("name", etName.getText().toString());
                 params.put("gender", etGender.getText().toString());
                 params.put("dob", etDOB.getText().toString());
-                params.put("points", etPoints.getText().toString());
+                params.put("points", etPoints);
                 params.put("password", etPassword.getText().toString());
 
 
@@ -71,8 +88,7 @@ public class newAccountActivity extends AppCompatActivity {
         }//if password is not long enough
         else {
             if (password.equals(password2)) {
-                Intent intent = new Intent(newAccountActivity.this, NavActivity.class);
-                intent.putExtra("EMAIL", email);
+                Intent intent = new Intent(newAccountActivity.this, MainActivity.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), "Passwords don't match", Toast.LENGTH_LONG).show();
@@ -137,6 +153,7 @@ public class newAccountActivity extends AppCompatActivity {
         StringBuilder result = new StringBuilder();
         boolean first = true;
         for (Map.Entry<String, String> entry : params.entrySet()) {
+
             if (first)
                 first = false;
             else

@@ -31,31 +31,44 @@ public class FormActivity extends AppCompatActivity {
 
     EditText pName, pStreetname, pPostcode;
     Button add;
+    int points;
+    String email, dob, gender, username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-        final TextView pId = findViewById(R.id.etPid);
+        //final TextView pId = findViewById(R.id.etPid);
+        final String pId = "10";
         final TextView pName = findViewById(R.id.etPname);
         final TextView pStreetname = findViewById(R.id.etPstreetname);
         final TextView pPostcode = findViewById(R.id.etPpostcode);
         add = findViewById(R.id.btnadd);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("USERNAME");
+        String gender = intent.getStringExtra("GENDER");
+        int points = intent.getIntExtra("POINTS",10);
+        String age = intent.getStringExtra("DOB");
+        points ++;
+        final String points2 =Integer.toString(points);
 
         final HashMap<String, String> params = new HashMap<>();
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                params.put("pub_id", pId.getText().toString());
+                params.put("pub_id", pId);
                 params.put("name", pName.getText().toString());
                 params.put("streetname", pStreetname.getText().toString());
                 params.put("postcode", pPostcode.getText().toString());
 
+                params.put("points",points2);
 
                 String url = "http://10.0.2.2:8010/pubspotter/api";
                 PerformPostCall(url, params);
+                String url2 = "http://10.0.2.2:8010/pubspotter/userapi";
+                //PerformPostCall2(url,params);
 
-                newPubCoordinates(pName, pStreetname, pPostcode);
+//                newPubCoordinates(pName, pStreetname, pPostcode);
             }
         });
 

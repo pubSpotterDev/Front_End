@@ -45,12 +45,13 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
     private GoogleMap mMap;
     private final int REQUEST_LOCATION_PERMISSION = 1;
     private Location mUserLocation;
+
+    int points;
+    String email, dob, gender, username;
     //private FusedLocationProviderClient fusedLocationClient;
 
     //Hardcoded values to keep the navbar from breaking without dB integration kek
-    int points = 0;
-    int age = 21;
-    String gender = "male";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,12 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("USERNAME");
+        String gender = intent.getStringExtra("GENDER");
+        int points = intent.getIntExtra("POINTS",10);
+        String age = intent.getStringExtra("DOB");
 
         //
 
@@ -130,7 +137,7 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 Intent intentGet = getIntent();
                 String username = intentGet.getStringExtra("USERNAME");
                 intentAccount.putExtra("NAME",username);
-                intentAccount.putExtra("AGE",age);
+                intentAccount.putExtra("DOB",dob);
                 intentAccount.putExtra("POINTS",points);
                 intentAccount.putExtra("GENDER",gender);
                 startActivity(intentAccount);
