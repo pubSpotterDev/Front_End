@@ -5,6 +5,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:textColor="@color/colorText"
     tools:context=".NavActivity">
 
     <android.support.design.widget.BottomNavigationView
@@ -14,6 +16,7 @@
         android:background="@color/colorPrimaryDark"
         app:itemIconTint="@android:color/background_light"
         app:itemTextColor="@android:color/background_light"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,12 +26,14 @@
     <TextView
         android:id="@+id/tvGreeting"
         android:layout_width="333dp"
-        android:layout_height="62dp"
+        android:layout_height="68dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorText"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,50 +44,57 @@
     <TextView
         android:id="@+id/tvPoints"
         android:layout_width="329dp"
-        android:layout_height="82dp"
+        android:layout_height="61dp"
         android:layout_marginStart="102dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="103dp"
         android:layout_marginBottom="8dp"
         android:textAlignment="center"
         android:textSize="24sp"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorText"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGreeting"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.044" />
 
     <TextView
         android:id="@+id/tvPubLabel"
-        android:layout_width="178dp"
+        android:layout_width="328dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:textAlignment="textStart"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorText"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPoints"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <ListView
         android:id="@+id/lsPubs"
         android:layout_width="395dp"
-        android:layout_height="329dp"
+        android:layout_height="350dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorText"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPubLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPubLabel"
+        app:layout_constraintVertical_bias="0.254" />
 
     <!--<FrameLayout
         android:id="@+id/fragment_container"

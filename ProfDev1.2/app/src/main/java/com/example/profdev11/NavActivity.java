@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,17 +32,19 @@ public class NavActivity extends AppCompatActivity {
 
      TextView tvGreeting,tvPoints,tvPubLabel;
      //ListView pubList;
-     int points = 0;
-     int age = 21;
-     String gender = "male";
+
+     //String gender = "male";
      //String[] pubs;
      String [] Name;
      String [] Street_Name;
      String [] Postcode;
+     int points;
+     String email, name, dob, gender, gender2, username;
+
+
 
     ArrayList<Pub> allPubs = new ArrayList<>();
     List<Map<String, String>> data = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,16 @@ public class NavActivity extends AppCompatActivity {
         //pubList = findViewById(R.id.lsPubs);
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra("USERNAME");
+
+        User user = (User)intent.getSerializableExtra("USER");
+        username = user.getName();
+        points = user.getPoints();
+        email = user.getEmail();
+        dob = user.getDob();
+        gender = user.getGender();
+        gender2 = gender;
+
+
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -66,10 +78,9 @@ public class NavActivity extends AppCompatActivity {
 
         tvGreeting.setText("Hello "+username);
         tvPoints.setText("You have "+points+" points");
+
         tvPubLabel.setText(("You are near the following pubs: "));
-
-
-       /* //Making a http call
+        //Making a http call
         HttpURLConnection urlConnection;
         InputStream in = null;
         try {
@@ -129,7 +140,7 @@ public class NavActivity extends AppCompatActivity {
 
                 //Adapter Data For List View
                 Map<String, String> datum = new HashMap<>(2);
-                datum.put("Name_StreetN", NS);
+                datum.put("Name_Street", NS);
                 datum.put("Postcode", postcode);
                 data.add(datum);
 
@@ -146,7 +157,6 @@ public class NavActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-*/
     }
 
     public String convertStreamToString(InputStream is)
@@ -156,37 +166,38 @@ public class NavActivity extends AppCompatActivity {
     }
 
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
+                case R.id.navigation_main:
+                    Toast.makeText(getApplicationContext(),"You are already on the main page",Toast.LENGTH_SHORT).show();
+                    return true;
                 case R.id.navigation_map:
-                    Intent intent = new Intent(NavActivity.this, MapsActivity.class);
-                    startActivity(intent);
+                    Intent intentMap = new Intent(NavActivity.this, MapsActivity.class);
+                    startActivity(intentMap);
                     return true;
-
                 case R.id.navigation_account:
-                    Intent intent2 = new Intent(NavActivity.this, AccountActivity.class);
+                    Intent intentAccount = new Intent(NavActivity.this, AccountActivity.class);
                     Intent intent4 = getIntent();
-                    String username = intent4.getStringExtra("USERNAME");
-                    intent2.putExtra("NAME",username);
-                    intent2.putExtra("AGE",age);
-                    intent2.putExtra("POINTS",points);
-                    intent2.putExtra("GENDER",gender);
-
-                    startActivity(intent2);
+                    intent4.putExtra("POINTS",points);
+                    intent4.putExtra("GENDER",gender2);
+                    intent4.putExtra("DOB",dob);
+                    intent4.putExtra("EMAIL",email);
+                    intent4.putExtra("USERNAME",name);
+                    startActivity(intentAccount);
                     return true;
-
                 case R.id.navigation_about:
-                    Intent intent3 = new Intent(NavActivity.this,AboutActivity.class);
-                    startActivity(intent3);
+                    Intent intentAbout = new Intent(NavActivity.this,AboutActivity.class);
+                    startActivity(intentAbout);
                     return true;
-            }
+            }//switch
             return false;
         }
-    };
+    };//OnNavigationItemSelectedListener
 
 
 

@@ -37,8 +37,6 @@ public class FormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-
-
         final TextView pId = findViewById(R.id.etPid);
         final TextView pName = findViewById(R.id.etPname);
         final TextView pStreetname = findViewById(R.id.etPstreetname);
@@ -56,16 +54,16 @@ public class FormActivity extends AppCompatActivity {
 
                 String url = "http://10.0.2.2:8010/pubspotter/api";
                 PerformPostCall(url, params);
+//                newPubCoordinates(pName, pStreetname, pPostcode);
             }
         });
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                newPubCoordinates(pName, pStreetname, pPostcode);
-            }
-        });
-
+//        add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                newPubCoordinates(pName, pStreetname, pPostcode);
+//            }
+//        });
     }
 
     public String PerformPostCall(String requestURL, HashMap<String, String> postDataParams) {
@@ -125,14 +123,15 @@ public class FormActivity extends AppCompatActivity {
         StringBuilder result = new StringBuilder();
         boolean first = true;
         for (Map.Entry<String, String> entry : params.entrySet()) {
-            if (first) {
+            if (first)
                 first = false;
-            } else {
+            else
                 result.append("&");
-                result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-                result.append("=");
-                result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-            }
+
+
+            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
         }
         return result.toString();
     }
