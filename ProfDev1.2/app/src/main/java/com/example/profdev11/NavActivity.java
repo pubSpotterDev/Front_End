@@ -68,7 +68,7 @@ public class NavActivity extends AppCompatActivity {
         email = user.getEmail();
         dob = user.getDob();
         gender = user.getGender();
-        gender2 = gender;
+        //gender2 = gender;
 
 
 
