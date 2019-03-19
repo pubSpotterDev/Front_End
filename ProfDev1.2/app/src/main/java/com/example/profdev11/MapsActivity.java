@@ -112,8 +112,8 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
             case R.id.check_in_pub:
                 Intent intentCheckIn = new Intent(MapsActivity.this, CheckActivity.class);
                 intentCheckIn.putExtra("POINTS",points);
-                intentCheckIn.putExtra("userLatitude", 53.471);
-                intentCheckIn.putExtra("userLongitude", 2.239);
+                intentCheckIn.putExtra("userLatitude", (float) 53.471);
+                intentCheckIn.putExtra("userLongitude", (float) -2.239);
                 startActivity(intentCheckIn);
                 return true;
             //NavBar
