@@ -53,7 +53,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
-        android:hint="Pub Name"
+        android:hint="@string/pub_name"
         android:textColor="@color/colorText"
         android:textColorHint="@color/colorText"
         android:inputType="textPersonName"
