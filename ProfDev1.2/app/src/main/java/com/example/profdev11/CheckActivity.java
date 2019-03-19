@@ -96,29 +96,32 @@ public class CheckActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (!geocodeMatches.isEmpty()) {
-            latitude = (float) geocodeMatches.get(0).getLatitude();
-            longitude = (float) geocodeMatches.get(0).getLongitude();
-            LatLng pubLocation = new LatLng(latitude, longitude);
-            Toast.makeText(getApplicationContext(), "" +pubLocation, Toast.LENGTH_LONG).show();
+        if (geocodeMatches != null) {
+            //if (!geocodeMatches.isEmpty()) {
+                latitude = (float) geocodeMatches.get(0).getLatitude();
+                longitude = (float) geocodeMatches.get(0).getLongitude();
+                LatLng pubLocation = new LatLng(latitude, longitude);
+                Toast.makeText(getApplicationContext(), "" +pubLocation, Toast.LENGTH_LONG).show();
 
-            userLocation = pubLocation;
+            //    userLocation = pubLocation;
+             //   St Augustus, Grosvenor St, M15 6BW
+                // Business School, Oxford Road, M15 6BH
 
 
-            if (pubLocation == userLocation) {
-                boolean pubChecked = true;
-                Toast.makeText(getApplicationContext(), "YOU JUST CHECKED IN!", Toast.LENGTH_LONG).show();
-                Intent intentBackToAccount = new Intent(CheckActivity.this, AccountActivity.class);
-                intentBackToAccount.putExtra("pubChecked", true);
-                startActivity(intentBackToAccount);
-                return pubLocation;
-            } else {
-                boolean pubChecked = false;
-                Toast.makeText(getApplicationContext(), "Are you sure? Sorry, we couldn't find a pub in your location", Toast.LENGTH_LONG).show();
-                return userLocation;
-            }
-
-        } else {
+                if (pubLocation == userLocation) {
+                    boolean pubChecked = true;
+                    Toast.makeText(getApplicationContext(), "YOU JUST CHECKED IN!", Toast.LENGTH_LONG).show();
+                    Intent intentBackToAccount = new Intent(CheckActivity.this, AccountActivity.class);
+                    intentBackToAccount.putExtra("pubChecked", true);
+                    startActivity(intentBackToAccount);
+                    return pubLocation;
+                } else {
+                    boolean pubChecked = false;
+                    Toast.makeText(getApplicationContext(), "Are you sure? Sorry, we couldn't find a pub in your location", Toast.LENGTH_LONG).show();
+                    return userLocation;
+                }
+        }
+        else {
             Toast.makeText(getApplicationContext(), "Sorry, we couldn't find a pub in your location", Toast.LENGTH_LONG).show();
             return tempLocation;
         }
