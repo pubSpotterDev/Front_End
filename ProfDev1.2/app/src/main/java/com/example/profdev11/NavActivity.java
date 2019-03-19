@@ -63,13 +63,13 @@ public class NavActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         User user = (User)intent.getSerializableExtra("USER");
-        username = user.getName();
-        points = user.getPoints();
-        email = user.getEmail();
-        dob = user.getDob();
-        gender = user.getGender();
-        password = user.getPassword();
-        id = user.getId();
+//        username = user.getName();
+//        points = user.getPoints();
+//        email = user.getEmail();
+//        dob = user.getDob();
+//        gender = user.getGender();
+//        password = user.getPassword();
+//        id = user.getId();
 
         //gender2 = gender;
 

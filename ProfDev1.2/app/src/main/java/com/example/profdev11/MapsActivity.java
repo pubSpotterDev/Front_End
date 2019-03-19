@@ -129,11 +129,14 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 intent.putExtra("ID",id);
                 intent.putExtra("POINTS",points);
                 startActivity(intent);
+
                 return true;
             case R.id.check_in_pub:
-                Intent intent2 = new Intent(MapsActivity.this, CheckActivity.class);
-                intent2.putExtra("POINTS",points);
-                startActivity(intent2);
+                Intent intentCheckIn = new Intent(MapsActivity.this, CheckActivity.class);
+                intentCheckIn.putExtra("POINTS",points);
+                intentCheckIn.putExtra("userLatitude", 53.470407);
+                intentCheckIn.putExtra("userLongitude", 2.239145);
+                startActivity(intentCheckIn);
                 return true;
             //NavBar
             case R.id.navigation_main:
@@ -252,7 +255,6 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
-           // LatLng UserLocation = new LatLng();
             String TAG = "";
             Log.d(TAG, "getLocation: permissions granted");
         } else {
