@@ -159,14 +159,11 @@ public class FormActivity extends AppCompatActivity {
     //This method takes the address details input by the user and uses Geocoder class
     //to retrieve the coordinates of the location
     public LatLng newPubCoordinates(TextView pName,TextView pStreetname, TextView pPostcode) {
-
         float latitude;
         float longitude;
         LatLng tempLocation = new LatLng(0.0, 0.0);
         final String address = "" + pName.getText().toString() + pStreetname.getText().toString() + pPostcode.getText().toString();
-
         List<Address> geocodeMatches = null;
-
         try {
             geocodeMatches =
                     new Geocoder(this).getFromLocationName(
@@ -176,25 +173,25 @@ public class FormActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (!geocodeMatches.isEmpty()) {
-            boolean pubAdded = true;
-            latitude = (float) geocodeMatches.get(0).getLatitude();
-            longitude = (float) geocodeMatches.get(0).getLongitude();
-            LatLng pubLocation = new LatLng(latitude, longitude);
-            Toast.makeText(getApplicationContext(), " " + pubLocation , Toast.LENGTH_LONG).show();
-            Intent intentBackToMap = new Intent(FormActivity.this, MapsActivity.class);
-            intentBackToMap.putExtra("newPubName", pName.getText().toString());
-            intentBackToMap.putExtra("newPubLatitude", latitude);
-            intentBackToMap.putExtra("newPubLongitude", longitude);
-            intentBackToMap.putExtra("pubAdded", true);
-            startActivity(intentBackToMap);
-            return pubLocation;
+        if (geocodeMatches != null) {
+            if (!geocodeMatches.isEmpty()) {
+                boolean pubAdded = true;
+                latitude = (float) geocodeMatches.get(0).getLatitude();
+                longitude = (float) geocodeMatches.get(0).getLongitude();
+                LatLng pubLocation = new LatLng(latitude, longitude);
+                Toast.makeText(getApplicationContext(), " " + pubLocation, Toast.LENGTH_LONG).show();
+                Intent intentBackToMap = new Intent(FormActivity.this, MapsActivity.class);
+                intentBackToMap.putExtra("newPubName", pName.getText().toString());
+                intentBackToMap.putExtra("newPubLatitude", latitude);
+                intentBackToMap.putExtra("newPubLongitude", longitude);
+                intentBackToMap.putExtra("pubAdded", true);
+                startActivity(intentBackToMap);
+                return pubLocation;
 
+            }
         }
-        else {
+        else
             Toast.makeText(getApplicationContext(), "No matches" , Toast.LENGTH_LONG).show();
             return tempLocation;
-        }
     }
-
 }
