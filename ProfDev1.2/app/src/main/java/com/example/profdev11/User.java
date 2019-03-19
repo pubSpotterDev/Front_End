@@ -1,11 +1,15 @@
 package com.example.profdev11;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.io.Serializable;
 
-public class User {
-    private String email,name,gender, dob;
+public class User implements Serializable {
+
+    private String email,name,gender, dob, password;
 
     private int id, points;
 
-    public User(int id, String email, String name, String dob, String gender, int points) {
+    public User(int id, String email, String name, String dob, String gender, int points, String password) {
 
         this.email = email;
         this.name = name;
@@ -13,6 +17,7 @@ public class User {
         this.id = id;
         this.dob = dob;
         this.points = points;
+        this.password = password;
     }
 
     public String getEmail() {
@@ -61,6 +66,14 @@ public class User {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.name = password;
     }
 
 }

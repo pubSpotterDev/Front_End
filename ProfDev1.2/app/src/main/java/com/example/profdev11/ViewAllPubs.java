@@ -57,15 +57,15 @@ public class ViewAllPubs extends AppCompatActivity {
             // this will convert the string into a JSON array which we can then iterate
             // over using a loop
             JSONArray jsonArray = new JSONArray(response);
-            // instantiate the cheeseNames array and set the size
-            // to the amount of cheese object returned by the server
+            // instantiate the pubNames array and set the size
+            // to the amount of pub object returned by the server
             Name = new String[jsonArray.length()];
             Street_Name = new String[jsonArray.length()];
             Postcode = new String[jsonArray.length()];
 
             // use a for loop to iterate over the JSON array
             for (int i = 0; i < jsonArray.length(); i++) {
-                // the following line of code will get the name of the cheese from the
+                // the following line of code will get the name of the pub from the
                 // current JSON object and store it in a string variable called name
                 Integer pub_id = jsonArray.getJSONObject(i).getInt("pub_id");
                 String name = jsonArray.getJSONObject(i).get("name").toString();

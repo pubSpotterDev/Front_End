@@ -33,11 +33,11 @@ public class AccountActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String username = intent.getStringExtra("USERNAME");
         String gender = intent.getStringExtra("GENDER");
-        int points = intent.getIntExtra("POINTS",0);
-        int age = intent.getIntExtra("AGE",18);
+        int points = intent.getIntExtra("POINTS",10);
+        String age = intent.getStringExtra("DOB");
 
 
-        tvName.setText("Here are your account details");
+        tvName.setText("Hey "+username);
         tvAge.setText("You are "+age+" years old");
         tvPoints.setText("You have "+points+" pub points (pp)");
 

@@ -31,39 +31,65 @@ public class FormActivity extends AppCompatActivity {
 
     EditText pName, pStreetname, pPostcode;
     Button add;
+    int points;
+    String email, dob, gender, username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-        final TextView pId = findViewById(R.id.etPid);
+        //final TextView pId = findViewById(R.id.etPid);
+        final String pId = "10";
         final TextView pName = findViewById(R.id.etPname);
         final TextView pStreetname = findViewById(R.id.etPstreetname);
         final TextView pPostcode = findViewById(R.id.etPpostcode);
         add = findViewById(R.id.btnadd);
+        Intent intent = getIntent();
+
+
+        final String username = intent.getStringExtra("USERNAME");
+        final String gender = intent.getStringExtra("GENDER");
+        final String dob = intent.getStringExtra("DOB");
+        final String id = intent.getStringExtra("ID");
+        final String password = intent.getStringExtra("PASSWORD");
+        //final String points = "10";
+        System.out.println(id);
+
+
+
+        final int points = intent.getIntExtra("POINTS",+10);
+        //final String id = Integer.toString(intent.getIntExtra("ID",10));
+        //points ++;
+        final String points2 =Integer.toString(points);
 
         final HashMap<String, String> params = new HashMap<>();
+        final HashMap<String, String> params1 = new HashMap<>();
+
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                params.put("pub_id", pId.getText().toString());
+                params.put("pub_id", pId);
                 params.put("name", pName.getText().toString());
                 params.put("streetname", pStreetname.getText().toString());
                 params.put("postcode", pPostcode.getText().toString());
 
+                params1.put("points" ,points2);
+                params1.put("email",username);
+                params1.put("gender",gender);
+                params1.put("dob",dob);
+                params1.put("password",password);
+                params1.put("id",id);
 
                 String url = "http://10.0.2.2:8010/pubspotter/api";
                 PerformPostCall(url, params);
-//                newPubCoordinates(pName, pStreetname, pPostcode);
+
+                String url2 = "http://10.0.2.2:8010/pubspotter/userapi";
+                PerformPutCall(url2,params1);
+
+                newPubCoordinates(pName, pStreetname, pPostcode);
             }
         });
 
-//        add.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                newPubCoordinates(pName, pStreetname, pPostcode);
-//            }
-//        });
     }
 
     public String PerformPostCall(String requestURL, HashMap<String, String> postDataParams) {
@@ -118,6 +144,59 @@ public class FormActivity extends AppCompatActivity {
         return response;
     }
 
+    public String PerformPutCall(String requestURL, HashMap<String, String> putDataParams) {
+        URL url2;
+        String response = "";
+        try {
+            url2 = new URL(requestURL);
+            //Create the connection object
+            HttpURLConnection conn = (HttpURLConnection) url2.openConnection();
+            conn.setReadTimeout(15000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("PUT");
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+            //Write/send/POST dara to the connection using output stream and buffered writer
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+
+            //Write/send/Post key/value data (url encoded) to the server
+            System.out.println(getPutDataString(putDataParams));
+            writer.write(getPutDataString(putDataParams));
+
+            //clear the writer
+            writer.flush();
+            writer.close();
+
+            //close the output stream
+            os.close();
+
+            //get the server response code to determine what to do next (ie success/error)
+            int responseCode = conn.getResponseCode();
+            System.out.println("Response code = " + responseCode);
+
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                Intent Return = new Intent(FormActivity.this, MainActivity.class);
+                FormActivity.this.startActivity(Return);
+
+                Toast.makeText(this, "Points Updated!", Toast.LENGTH_LONG).show();
+                String line;
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while ((line = br.readLine()) != null) {
+                    response += line;
+                }
+            } else {
+                Toast.makeText(this, "Error failed to update Points", Toast.LENGTH_LONG).show();
+                response = "";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("response = " + response);
+        return response;
+    }
+
     //This method converts a hashmap to a URL query string of key/value pairs
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
@@ -136,31 +215,63 @@ public class FormActivity extends AppCompatActivity {
         return result.toString();
     }
 
+    //This method converts a hashmap to a URL query string of key/value pairs
+    private String getPutDataString(HashMap<String, String> params1) throws UnsupportedEncodingException {
+        StringBuilder result = new StringBuilder();
+        boolean first = true;
+        for (Map.Entry<String, String> entry : params1.entrySet()) {
+            if (first)
+                first = false;
+            else
+                result.append("&");
+
+
+            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+        }
+        return result.toString();
+    }
+
     //This method takes the address details input by the user and uses Geocoder class
     //to retrieve the coordinates of the location
     public LatLng newPubCoordinates(TextView pName,TextView pStreetname, TextView pPostcode) {
 
-        float latitude = 0;
-        float longitude = 0;
+        float latitude;
+        float longitude;
+        LatLng tempLocation = new LatLng(0.0, 0.0);
+        final String address = "" + pName.getText().toString() + pStreetname.getText().toString() + pPostcode.getText().toString();
 
         List<Address> geocodeMatches = null;
 
         try {
             geocodeMatches =
                     new Geocoder(this).getFromLocationName(
-                            " "+ pName + pStreetname + pPostcode, 1);
+                            "" + address , 1);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         if (!geocodeMatches.isEmpty()) {
+            boolean pubAdded = true;
             latitude = (float) geocodeMatches.get(0).getLatitude();
             longitude = (float) geocodeMatches.get(0).getLongitude();
+            LatLng pubLocation = new LatLng(latitude, longitude);
+            Toast.makeText(getApplicationContext(), " " + pubLocation , Toast.LENGTH_LONG).show();
+            Intent intentBackToMap = new Intent(FormActivity.this, MapsActivity.class);
+            intentBackToMap.putExtra("newPubName", pName.getText().toString());
+            intentBackToMap.putExtra("newPubLatitude", latitude);
+            intentBackToMap.putExtra("newPubLongitude", longitude);
+            intentBackToMap.putExtra("pubAdded", true);
+            startActivity(intentBackToMap);
+            return pubLocation;
+
         }
-        LatLng pubLocation = new LatLng(latitude, longitude);
-        Toast.makeText(getApplicationContext(), "ping", Toast.LENGTH_LONG).show();
-        return pubLocation;
+        else {
+            Toast.makeText(getApplicationContext(), "No matches" , Toast.LENGTH_LONG).show();
+            return tempLocation;
+        }
     }
 
 }

@@ -32,13 +32,16 @@ public class NavActivity extends AppCompatActivity {
 
      TextView tvGreeting,tvPoints,tvPubLabel;
      //ListView pubList;
-     int points = 0;
-     int age = 21;
-     String gender = "male";
+
+     //String gender = "male";
      //String[] pubs;
      String [] Name;
      String [] Street_Name;
      String [] Postcode;
+     int points,id;
+     String email, dob, gender, username, password;
+
+
 
     ArrayList<Pub> allPubs = new ArrayList<>();
     List<Map<String, String>> data = new ArrayList<>();
@@ -58,7 +61,19 @@ public class NavActivity extends AppCompatActivity {
         //pubList = findViewById(R.id.lsPubs);
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra("USERNAME");
+
+        User user = (User)intent.getSerializableExtra("USER");
+        username = user.getName();
+        points = user.getPoints();
+        email = user.getEmail();
+        dob = user.getDob();
+        gender = user.getGender();
+        password = user.getPassword();
+        id = user.getId();
+
+        //gender2 = gender;
+
+
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -66,9 +81,8 @@ public class NavActivity extends AppCompatActivity {
 
         tvGreeting.setText("Hello "+username);
         tvPoints.setText("You have "+points+" points");
+
         tvPubLabel.setText(("You are near the following pubs: "));
-
-
         //Making a http call
         HttpURLConnection urlConnection;
         InputStream in = null;
@@ -129,13 +143,13 @@ public class NavActivity extends AppCompatActivity {
 
                 //Adapter Data For List View
                 Map<String, String> datum = new HashMap<>(2);
-                datum.put("Name_StreetN", NS);
+                datum.put("Name_Street", NS);
                 datum.put("Postcode", postcode);
                 data.add(datum);
 
 
                 final ListView PubList = findViewById(R.id.lsPubs);
-                SimpleAdapter adapter = new SimpleAdapter(this, data, android.R.layout.simple_list_item_2, new String[]{"Name_StreetN", "Postcode"}, new int[]{android.R.id.text1, android.R.id.text2}) {
+                SimpleAdapter adapter = new SimpleAdapter(this, data, android.R.layout.simple_list_item_2, new String[]{"Name_Street", "Postcode"}, new int[]{android.R.id.text1, android.R.id.text2}) {
                     public View getView(int position, View convertView, ViewGroup parent) {
                         View view = super.getView(position, convertView, parent);
                         return view;
@@ -155,6 +169,7 @@ public class NavActivity extends AppCompatActivity {
     }
 
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -166,20 +181,28 @@ public class NavActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_map:
                     Intent intentMap = new Intent(NavActivity.this, MapsActivity.class);
+                    intentMap.putExtra("POINTS",points);
+                    intentMap.putExtra("GENDER",gender);
+                    intentMap.putExtra("DOB",dob);
+                    intentMap.putExtra("EMAIL",email);
+                    intentMap.putExtra("USERNAME",username);
+                    intentMap.putExtra("PASSWORD",password);
+                    intentMap.putExtra("ID",id);
                     startActivity(intentMap);
                     return true;
                 case R.id.navigation_account:
                     Intent intentAccount = new Intent(NavActivity.this, AccountActivity.class);
-                    Intent intent4 = getIntent();
-                    String username = intent4.getStringExtra("USERNAME");
-                    intentAccount.putExtra("NAME",username);
-                    intentAccount.putExtra("AGE",age);
                     intentAccount.putExtra("POINTS",points);
                     intentAccount.putExtra("GENDER",gender);
+                    intentAccount.putExtra("DOB",dob);
+                    intentAccount.putExtra("EMAIL",email);
+                    intentAccount.putExtra("USERNAME",username);
+                    //Bundle b = intentAccount.getExtras();
                     startActivity(intentAccount);
                     return true;
                 case R.id.navigation_about:
                     Intent intentAbout = new Intent(NavActivity.this,AboutActivity.class);
+
                     startActivity(intentAbout);
                     return true;
             }//switch
