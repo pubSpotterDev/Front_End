@@ -62,12 +62,13 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
         mapFragment.getMapAsync(this);
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra("USERNAME");
-        String gender = intent.getStringExtra("GENDER");
-        int points = intent.getIntExtra("POINTS",10);
-        String dob = intent.getStringExtra("DOB");
-        String password = intent.getStringExtra("PASSWORD");
-        int id = intent.getIntExtra("ID",10);
+         username = intent.getStringExtra("USERNAME");
+         gender = intent.getStringExtra("GENDER");
+         points = intent.getIntExtra("POINTS",10);
+         dob = intent.getStringExtra("DOB");
+         password = intent.getStringExtra("PASSWORD");
+         id = intent.getIntExtra("ID",10);
+         email = intent.getStringExtra("EMAIL");
 
         //
 
@@ -119,18 +120,23 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 //CHANGE THESE ACTIVITY POINTERS WHEN THE FORMS ARE MADE
             case R.id.add_pub:
                 Intent intent = new Intent(MapsActivity.this, FormActivity.class);
+                System.out.print(username+" "+email);
                 intent.putExtra("USERNAME",username);
                 intent.putExtra("EMAIL",email);
                 intent.putExtra("DOB",dob);
                 intent.putExtra("GENDER",gender);
                 intent.putExtra("PASSWORD",password);
                 intent.putExtra("ID",id);
+                intent.putExtra("POINTS",points);
                 startActivity(intent);
+
                 return true;
             case R.id.check_in_pub:
-                Intent intent2 = new Intent(MapsActivity.this, CheckActivity.class);
-                intent2.putExtra("POINTS",points);
-                startActivity(intent2);
+                Intent intentCheckIn = new Intent(MapsActivity.this, CheckActivity.class);
+                intentCheckIn.putExtra("POINTS",points);
+                intentCheckIn.putExtra("userLatitude", 53.470407);
+                intentCheckIn.putExtra("userLongitude", 2.239145);
+                startActivity(intentCheckIn);
                 return true;
             //NavBar
             case R.id.navigation_main:
@@ -249,7 +255,6 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
-           // LatLng UserLocation = new LatLng();
             String TAG = "";
             Log.d(TAG, "getLocation: permissions granted");
         } else {

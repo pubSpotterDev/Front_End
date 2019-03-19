@@ -1,4 +1,5 @@
 package com.example.profdev11;
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -108,6 +109,16 @@ public class ViewAllPubs extends AppCompatActivity {
                     }
                 };
                 PubList.setAdapter(adapter);
+
+//  Just trying something for the Check In activity - plz ignore for now
+/*                Intent intentCheckPubs = new Intent(ViewAllPubs.this, CheckActivity.class);
+                int
+                intentCheckPubs.putExtra("name", name);
+                intentCheckPubs.putExtra("streetname", streetname);
+                intentCheckPubs.putExtra("postcode", postcode);
+                startActivity(intentCheckPubs);*/
+
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
