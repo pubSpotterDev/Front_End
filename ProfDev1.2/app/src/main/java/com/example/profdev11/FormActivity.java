@@ -28,12 +28,14 @@ import java.util.List;
 import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
+import static android.os.Build.ID;
+
 public class FormActivity extends AppCompatActivity {
 
     EditText pName, pStreetname, pPostcode;
     Button add;
     int points;
-    String email, dob, gender, username;
+    String email, dob, gender, username,password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +131,8 @@ public class FormActivity extends AppCompatActivity {
             System.out.println("Response code = " + responseCode);
 
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-                Intent Return = new Intent(FormActivity.this, MainActivity.class);
+                Intent Return = new Intent(FormActivity.this, MapsActivity.class);
+
                 FormActivity.this.startActivity(Return);
 
                 Toast.makeText(this, "Pub added", Toast.LENGTH_LONG).show();
@@ -182,7 +185,7 @@ public class FormActivity extends AppCompatActivity {
             System.out.println("Response code = " + responseCode);
 
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-                Intent Return = new Intent(FormActivity.this, MainActivity.class);
+                Intent Return = new Intent(FormActivity.this, MapsActivity.class);
                 FormActivity.this.startActivity(Return);
 
                 Toast.makeText(this, "Points Updated!", Toast.LENGTH_LONG).show();
