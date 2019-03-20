@@ -59,7 +59,7 @@ public class AccountActivity extends AppCompatActivity {
 
 
         tvName.setText("Hey "+username);
-        tvAge.setText("You are "+age+" years old");
+        tvAge.setText("Your date of birth is "+age);
         tvPoints.setText("You have "+points+" pub points (pp)");
 
         tvGender.setText("Your gender is :"+gender);

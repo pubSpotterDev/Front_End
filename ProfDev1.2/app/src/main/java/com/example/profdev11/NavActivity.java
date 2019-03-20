@@ -32,17 +32,12 @@ import java.util.Map;
 public class NavActivity extends AppCompatActivity {
 
      TextView tvGreeting,tvPoints,tvPubLabel;
-     //ListView pubList;
 
-     //String gender = "male";
-     //String[] pubs;
      String [] Name;
      String [] Street_Name;
      String [] Postcode;
      int points,id;
      String email, dob, gender, username, password;
-
-
 
     ArrayList<Pub> allPubs = new ArrayList<>();
     ArrayList<Pub> yourPubs = new ArrayList<>();
@@ -86,21 +81,6 @@ public class NavActivity extends AppCompatActivity {
             }
 
         }
-
-        /*Intent intent = getIntent();
-
-        User user = (User)intent.getSerializableExtra("USER");
-        username = user.getName();
-        points = user.getPoints();
-        email = user.getEmail();
-        dob = user.getDob();
-        gender = user.getGender();
-        password = user.getPassword();
-        id = user.getId();*/
-
-        //gender2 = gender;
-
-
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -167,8 +147,10 @@ public class NavActivity extends AppCompatActivity {
 
                 Pub p = new Pub(pub_id,name,streetname,postcode);
                 allPubs.add(p);
-                if(i%4==0) {
-                    yourPubs.add(p);
+                if(points!=0) {
+                    if (i % 4 == 0) {
+                        yourPubs.add(p);
+                    }
                 }
 
                 //Adapter Data For List View
@@ -201,10 +183,8 @@ public class NavActivity extends AppCompatActivity {
     }
 
 
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {

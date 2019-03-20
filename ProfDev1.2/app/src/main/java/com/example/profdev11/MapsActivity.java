@@ -83,18 +83,6 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
     public boolean onOptionsItemSelected(MenuItem item) {
         // Change the map type based on the user's selection.
         switch (item.getItemId()) {
-/*            case R.id.normal_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                return true;
-            case R.id.hybrid_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                return true;
-            case R.id.satellite_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                return true;
-            case R.id.terrain_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-                return true;*/
                 //CHANGE THESE ACTIVITY POINTERS WHEN THE FORMS ARE MADE
             case R.id.add_pub:
                 Intent intent = new Intent(MapsActivity.this, FormActivity.class);
@@ -106,7 +94,6 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 intent.putExtra("ID",id);
                 intent.putExtra("POINTS",points);
                 startActivity(intent);
-
                 return true;
             case R.id.check_in_pub:
                 Intent intentCheckIn = new Intent(MapsActivity.this, CheckActivity.class);
@@ -122,28 +109,6 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 startActivity(intentCheckIn);
                 return true;
             //NavBar
-            /*case R.id.navigation_main:
-                Intent intentNav = new Intent(MapsActivity.this,NavActivity.class);
-                startActivity(intentNav);
-                return true;
-            case R.id.navigation_map:
-                Toast.makeText(getApplicationContext(),"You are already on the map page",Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.navigation_account:
-                Intent intentAccount = new Intent(MapsActivity.this,AccountActivity.class);
-                Intent intentGet = getIntent();
-                //String username = intentGet.getStringExtra("USERNAME");
-                intentAccount.putExtra("NAME",username);
-                intentAccount.putExtra("DOB",dob);
-                intentAccount.putExtra("POINTS",points);
-                intentAccount.putExtra("GENDER",gender);
-                //intent
-                startActivity(intentAccount);
-                return true;
-            case R.id.navigation_about:
-                Intent intentAbout = new Intent(MapsActivity.this,AboutActivity.class);
-                startActivity(intentAbout);
-                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }//switch
@@ -276,14 +241,7 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                     .snippet("PUB"));
         }
     }*/
-
-
-
-
-
-
-
-    }
+}
 
 /**
     //NavBar DEPRECATED - now integrated into top menu
