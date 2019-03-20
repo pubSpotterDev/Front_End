@@ -21,11 +21,11 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         //Intent intent = getIntent();  // legacy from NacActivity navbar
 
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        //BottomNavigationView navigation = findViewById(R.id.navigation);
+        //navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }//onCreate method
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    /*private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -53,6 +53,6 @@ public class AboutActivity extends AppCompatActivity {
             }//switch
             return false;
         }//onNavigationItemSelected bool
-    };//OnNavigationItemSelectedListener
+    };//OnNavigationItemSelectedListener*/
 
 }//AboutActivity class

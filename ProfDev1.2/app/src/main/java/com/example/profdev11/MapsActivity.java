@@ -75,7 +75,7 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.map_menu, menu);
-        inflater.inflate(R.menu.navigation,menu);
+        //inflater.inflate(R.menu.navigation,menu);
         return true;
     }//onCreateOptionsMenu method
 
@@ -83,22 +83,9 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
     public boolean onOptionsItemSelected(MenuItem item) {
         // Change the map type based on the user's selection.
         switch (item.getItemId()) {
-/*            case R.id.normal_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                return true;
-            case R.id.hybrid_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                return true;
-            case R.id.satellite_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                return true;
-            case R.id.terrain_map:
-                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-                return true;*/
                 //CHANGE THESE ACTIVITY POINTERS WHEN THE FORMS ARE MADE
             case R.id.add_pub:
                 Intent intent = new Intent(MapsActivity.this, FormActivity.class);
-                System.out.print(username+" "+email);
                 intent.putExtra("USERNAME",username);
                 intent.putExtra("EMAIL",email);
                 intent.putExtra("DOB",dob);
@@ -107,38 +94,21 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 intent.putExtra("ID",id);
                 intent.putExtra("POINTS",points);
                 startActivity(intent);
-
                 return true;
             case R.id.check_in_pub:
                 Intent intentCheckIn = new Intent(MapsActivity.this, CheckActivity.class);
+                intentCheckIn.putExtra("USERNAME",username);
+                intentCheckIn.putExtra("EMAIL",email);
+                intentCheckIn.putExtra("DOB",dob);
+                intentCheckIn.putExtra("GENDER",gender);
+                intentCheckIn.putExtra("PASSWORD",password);
+                intentCheckIn.putExtra("ID",id);
                 intentCheckIn.putExtra("POINTS",points);
                 intentCheckIn.putExtra("userLatitude", (float) 53.471);
                 intentCheckIn.putExtra("userLongitude", (float) -2.239);
                 startActivity(intentCheckIn);
                 return true;
             //NavBar
-            case R.id.navigation_main:
-                Intent intentNav = new Intent(MapsActivity.this,NavActivity.class);
-                startActivity(intentNav);
-                return true;
-            case R.id.navigation_map:
-                Toast.makeText(getApplicationContext(),"You are already on the map page",Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.navigation_account:
-                Intent intentAccount = new Intent(MapsActivity.this,AccountActivity.class);
-                Intent intentGet = getIntent();
-                //String username = intentGet.getStringExtra("USERNAME");
-                intentAccount.putExtra("NAME",username);
-                intentAccount.putExtra("DOB",dob);
-                intentAccount.putExtra("POINTS",points);
-                intentAccount.putExtra("GENDER",gender);
-                //intent
-                startActivity(intentAccount);
-                return true;
-            case R.id.navigation_about:
-                Intent intentAbout = new Intent(MapsActivity.this,AboutActivity.class);
-                startActivity(intentAbout);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }//switch
@@ -272,14 +242,7 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                     .snippet("PUB"));
         }
     }*/
-
-
-
-
-
-
-
-    }
+}
 
 /**
     //NavBar DEPRECATED - now integrated into top menu

@@ -28,12 +28,14 @@ import java.util.List;
 import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
+import static android.os.Build.ID;
+
 public class FormActivity extends AppCompatActivity {
 
     EditText pName, pStreetname, pPostcode;
     Button add;
     int points;
-    String email, dob, gender, username;
+    String email, dob, gender, username,password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +58,12 @@ public class FormActivity extends AppCompatActivity {
         final String password = intent.getStringExtra("PASSWORD");
         final String email = intent.getStringExtra("EMAIL");
         //final String points = "10";
-        System.out.println(id);
+        System.out.println("id"+id);
         final String ID = Integer.toString(id);
         int points = intent.getIntExtra("POINTS",5);
-        System.out.println(points);
+        System.out.println("points"+points);
+        System.out.println("email"+email);
+
         //final String id = Integer.toString(intent.getIntExtra("ID",10));
         points = points +10;
         final String points2 =(Integer.toString(points));
@@ -127,7 +131,8 @@ public class FormActivity extends AppCompatActivity {
             System.out.println("Response code = " + responseCode);
 
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-                Intent Return = new Intent(FormActivity.this, MainActivity.class);
+                Intent Return = new Intent(FormActivity.this, MapsActivity.class);
+
                 FormActivity.this.startActivity(Return);
 
                 Toast.makeText(this, "Pub added", Toast.LENGTH_LONG).show();
@@ -180,7 +185,7 @@ public class FormActivity extends AppCompatActivity {
             System.out.println("Response code = " + responseCode);
 
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-                Intent Return = new Intent(FormActivity.this, MainActivity.class);
+                Intent Return = new Intent(FormActivity.this, MapsActivity.class);
                 FormActivity.this.startActivity(Return);
 
                 Toast.makeText(this, "Points Updated!", Toast.LENGTH_LONG).show();

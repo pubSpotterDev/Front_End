@@ -24,6 +24,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,14 +36,14 @@ public class CheckActivity extends AppCompatActivity {
     EditText pName, pStreetname, pPostcode;
     Button checkIn;
 
+    ArrayList<Pub> yourPubs = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
 
-        Intent intent = getIntent();
-        int points = intent.getIntExtra("USERNAME", 0);
-        points++;
+        //Intent intent = getIntent();
 
         final TextView checkpName = findViewById(R.id.checkPname);
         final TextView checkpStreetname = findViewById(R.id.checkPstreetname);
@@ -56,6 +57,32 @@ public class CheckActivity extends AppCompatActivity {
 
         final HashMap<String, String> params = new HashMap<>();
 
+        final String pId = "10";
+        final TextView pName = findViewById(R.id.etPname);
+        final TextView pStreetname = findViewById(R.id.etPstreetname);
+        final TextView pPostcode = findViewById(R.id.etPpostcode);
+
+        final String username = intentCheckIn.getStringExtra("USERNAME");
+        final String gender = intentCheckIn.getStringExtra("GENDER");
+        final String dob = intentCheckIn.getStringExtra("DOB");
+        int id = intentCheckIn.getIntExtra("ID",10);
+        final String password = intentCheckIn.getStringExtra("PASSWORD");
+        final String email = intentCheckIn.getStringExtra("EMAIL");
+        System.out.println("id"+id);
+        final String ID = Integer.toString(id);
+        int points = intentCheckIn.getIntExtra("POINTS",5);
+        System.out.println("points"+points);
+        System.out.println("email"+email);
+
+
+        //final String id = Integer.toString(intent.getIntExtra("ID",10));
+        points = points +10;
+        final int points3 = points;
+        final String points2 =(Integer.toString(points));
+
+        //final HashMap<String, String> params = new HashMap<>();
+        final HashMap<String, String> params1 = new HashMap<>();
+
         checkIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,16 +90,108 @@ public class CheckActivity extends AppCompatActivity {
                 params.put("streetname", checkpStreetname.getText().toString());
                 params.put("postcode", checkpPostcode.getText().toString());
                 String url = "http://10.0.2.2:8010/pubspotter/api";
+
+                params1.put("points" ,points2);
+                params1.put("name",username);
+                params1.put("email",email);
+                params1.put("gender",gender);
+                params1.put("dob",dob);
+                params1.put("password",password);
+                params1.put("id",ID);
+
+                Intent intent = new Intent(CheckActivity.this, NavActivity.class);
+
+                intent.putExtra("MAKE","MAKE");
+                intent.putExtra("USERNAME",username);
+                intent.putExtra("EMAIL",email);
+                intent.putExtra("DOB",dob);
+                intent.putExtra("GENDER",gender);
+                intent.putExtra("PASSWORD",password);
+                intent.putExtra("ID",ID);
+                //int points = intent.getIntExtra("POINTS",10);
+                intent.putExtra("POINTS",points3);
+
+                String url2 = "http://10.0.2.2:8010/pubspotter/userapi";
+                PerformPutCall(url2,params1);
+
                 CapturePub(url, params);
                 checkPubCoordinates(checkpName, checkpStreetname, checkpPostcode, userLatitude, userLongitude, userLocation);
+                String pubName = checkpName.getText().toString();
+
+                intent.putExtra("PUB",pubName);
+                startActivity(intent);
             }
         });
+    }//end of oncreate
+
+    public String PerformPutCall(String requestURL, HashMap<String, String> putDataParams) {
+        URL url2;
+        String response = "";
+        try {
+            url2 = new URL(requestURL);
+            //Create the connection object
+            HttpURLConnection conn = (HttpURLConnection) url2.openConnection();
+            conn.setReadTimeout(15000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("PUT");
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+            //Write/send/POST dara to the connection using output stream and buffered writer
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+
+            //Write/send/Post key/value data (url encoded) to the server
+            System.out.println(getPutDataString(putDataParams));
+            writer.write(getPutDataString(putDataParams));
+
+            //clear the writer
+            writer.flush();
+            writer.close();
+
+            //close the output stream
+            os.close();
+
+            //get the server response code to determine what to do next (ie success/error)
+            int responseCode = conn.getResponseCode();
+            System.out.println("Response code = " + responseCode);
+
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                Intent Return = new Intent(CheckActivity.this, MainActivity.class);
+                CheckActivity.this.startActivity(Return);
+
+                Toast.makeText(this, "Points Updated!", Toast.LENGTH_LONG).show();
+                String line;
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while ((line = br.readLine()) != null) {
+                    response += line;
+                }
+            } else {
+                Toast.makeText(this, "Error failed to update Points", Toast.LENGTH_LONG).show();
+                response = "";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("response = " + response);
+        return response;
+    }
+
+    private String getPutDataString(HashMap<String, String> params1) throws UnsupportedEncodingException {
+        StringBuilder result = new StringBuilder();
+        boolean first = true;
+        for (Map.Entry<String, String> entry : params1.entrySet()) {
+            if (first)
+                first = false;
+            else
+                result.append("&");
 
 
-//        Intent intentAccount = new Intent(CheckActivity.this, NavActivity.class);
-//        Intent intentGet = getIntent();
-//        startActivity(intentAccount);
-
+            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+        }
+        return result.toString();
     }
 
 

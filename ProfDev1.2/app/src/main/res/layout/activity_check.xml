@@ -11,18 +11,19 @@
     <TextView
         android:id="@+id/tvLabelCI"
         android:layout_width="262dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="72dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="76dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="Check in Page"
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textColorHint="@color/colorText"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintVertical_bias="0.26" />
 
    <!-- <ListView
         android:id="@+id/lsAllPubs"
@@ -54,15 +55,15 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/pub_name"
+        android:inputType="textPersonName"
         android:textColor="@color/colorText"
         android:textColorHint="@color/colorText"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLabelCI"
-        app:layout_constraintVertical_bias="0.311" />
+        app:layout_constraintVertical_bias="0.125" />
 
     <EditText
         android:id="@+id/checkPstreetname"
@@ -74,15 +75,14 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/pub_street_name"
+        android:inputType="textPersonName"
         android:textColor="@color/colorText"
         android:textColorHint="@color/colorText"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLabelCI"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.29" />
 
     <EditText
         android:id="@+id/checkPpostcode"
@@ -101,7 +101,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLabelCI"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintVertical_bias="0.526" />
 
     <Button
         android:id="@+id/btnCheck"
@@ -110,12 +110,29 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="112dp"
         android:clickable="true"
+        android:focusable="true"
         android:text="@string/check_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkPpostcode"
-        android:focusable="true" />
+        app:layout_constraintVertical_bias="0.773" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="132dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.039"
+        app:srcCompat="@drawable/pint" />
 
 </android.support.constraint.ConstraintLayout>
