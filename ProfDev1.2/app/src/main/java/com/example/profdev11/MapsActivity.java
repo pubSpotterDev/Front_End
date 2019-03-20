@@ -3,12 +3,9 @@ package com.example.profdev11;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -17,28 +14,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.support.design.widget.BottomNavigationView;
-
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -48,10 +30,6 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
 
     int points,id;
     String email, dob, gender, username, password;
-    //private FusedLocationProviderClient fusedLocationClient;
-
-    //Hardcoded values to keep the navbar from breaking without dB integration kek
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +83,7 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
     public boolean onOptionsItemSelected(MenuItem item) {
         // Change the map type based on the user's selection.
         switch (item.getItemId()) {
-            case R.id.normal_map:
+/*            case R.id.normal_map:
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                 return true;
             case R.id.hybrid_map:
@@ -116,7 +94,7 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 return true;
             case R.id.terrain_map:
                 mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-                return true;
+                return true;*/
                 //CHANGE THESE ACTIVITY POINTERS WHEN THE FORMS ARE MADE
             case R.id.add_pub:
                 Intent intent = new Intent(MapsActivity.this, FormActivity.class);
@@ -139,8 +117,8 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 intentCheckIn.putExtra("PASSWORD",password);
                 intentCheckIn.putExtra("ID",id);
                 intentCheckIn.putExtra("POINTS",points);
-                intentCheckIn.putExtra("userLatitude", 53.470407);
-                intentCheckIn.putExtra("userLongitude", 2.239145);
+                intentCheckIn.putExtra("userLatitude", (float) 53.471);
+                intentCheckIn.putExtra("userLongitude", (float) -2.239);
                 startActivity(intentCheckIn);
                 return true;
             //NavBar

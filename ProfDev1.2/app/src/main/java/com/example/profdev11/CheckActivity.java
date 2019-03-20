@@ -51,8 +51,8 @@ public class CheckActivity extends AppCompatActivity {
         checkIn = findViewById(R.id.btnCheck);
 
         Intent intentCheckIn = getIntent();
-        Float userLatitude = intentCheckIn.getFloatExtra("newPubLatitude", 0);
-        Float userLongitude = intentCheckIn.getFloatExtra("newPubLongitude", 0);
+        final Float userLatitude = intentCheckIn.getFloatExtra("userLatitude", 0);
+        final Float userLongitude = intentCheckIn.getFloatExtra("userLongitude", 0);
         final LatLng userLocation = new LatLng(userLatitude, userLongitude);
 
         final HashMap<String, String> params = new HashMap<>();
@@ -101,7 +101,7 @@ public class CheckActivity extends AppCompatActivity {
                 PerformPutCall(url2,params1);
 
                 CapturePub(url, params);
-                checkPubCoordinates(checkpName, checkpStreetname, checkpPostcode, userLocation);
+                checkPubCoordinates(checkpName, checkpStreetname, checkpPostcode, userLatitude, userLongitude, userLocation);
                 String pubName = checkpName.getText().toString();
 
                 Intent intent = new Intent(CheckActivity.this, NavActivity.class);
@@ -186,7 +186,7 @@ public class CheckActivity extends AppCompatActivity {
 
     //This method takes the address details input by the user and uses Geocoder class
     //to retrieve the coordinates of the location
-    public LatLng checkPubCoordinates(TextView checkpName,TextView checkpStreetname, TextView checkpPostcode, LatLng userLocation) {
+    public LatLng checkPubCoordinates(TextView checkpName,TextView checkpStreetname, TextView checkpPostcode, float userLatitude, float userLongitude, LatLng userLocation) {
 
         float latitude;
         float longitude;
@@ -204,29 +204,33 @@ public class CheckActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (!geocodeMatches.isEmpty()) {
-            latitude = (float) geocodeMatches.get(0).getLatitude();
-            longitude = (float) geocodeMatches.get(0).getLongitude();
-            LatLng pubLocation = new LatLng(latitude, longitude);
-            Toast.makeText(getApplicationContext(), "" +pubLocation, Toast.LENGTH_LONG).show();
+        if (geocodeMatches != null) {
+            //if (!geocodeMatches.isEmpty()) {
+                latitude = (float) geocodeMatches.get(0).getLatitude();
+                longitude = (float) geocodeMatches.get(0).getLongitude();
+                LatLng pubLocation = new LatLng(latitude, longitude);
+                Toast.makeText(getApplicationContext(), "" +pubLocation, Toast.LENGTH_LONG).show();
+                float differenceLat = (Math.abs(latitude) - Math.abs(userLatitude));
+                float differenceLong = (Math.abs(longitude) - Math.abs(userLongitude));
+              //  userLocation = pubLocation;
+             //   St Augustus, Grosvenor St, M15 6BW
+                // Business School, Oxford Road, M15 6BH
 
-            userLocation = pubLocation;
 
-
-            if (pubLocation == userLocation) {
-                boolean pubChecked = true;
-                Toast.makeText(getApplicationContext(), "YOU JUST CHECKED IN!", Toast.LENGTH_LONG).show();
-                Intent intentBackToAccount = new Intent(CheckActivity.this, AccountActivity.class);
-                intentBackToAccount.putExtra("pubChecked", true);
-                startActivity(intentBackToAccount);
-                return pubLocation;
-            } else {
-                boolean pubChecked = false;
-                Toast.makeText(getApplicationContext(), "Are you sure? Sorry, we couldn't find a pub in your location", Toast.LENGTH_LONG).show();
-                return userLocation;
-            }
-
-        } else {
+                if (differenceLat <= 0.05 && differenceLong <= 0.05) {
+                    boolean pubChecked = true;
+                    Toast.makeText(getApplicationContext(), "YOU JUST CHECKED IN!", Toast.LENGTH_LONG).show();
+                    Intent intentBackToAccount = new Intent(CheckActivity.this, AccountActivity.class);
+                    intentBackToAccount.putExtra("pubChecked", true);
+                    startActivity(intentBackToAccount);
+                    return pubLocation;
+                } else {
+                    boolean pubChecked = false;
+                    Toast.makeText(getApplicationContext(), "Are you sure? Sorry, we couldn't find a pub in your location", Toast.LENGTH_LONG).show();
+                    return userLocation;
+                }
+        }
+        else {
             Toast.makeText(getApplicationContext(), "Sorry, we couldn't find a pub in your location", Toast.LENGTH_LONG).show();
             return tempLocation;
         }
