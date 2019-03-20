@@ -61,24 +61,36 @@ public class NavActivity extends AppCompatActivity {
         if( getIntent().getExtras() != null)
         {
             Intent intent = getIntent();
-            User user = (User)intent.getSerializableExtra("USER");
-            username = user.getName();
-            points = user.getPoints();
-            email = user.getEmail();
-            dob = user.getDob();
-            gender = user.getGender();
-            password = user.getPassword();
-            id = user.getId();
+            if(intent.hasExtra("USER")) {
+                User user = (User) intent.getSerializableExtra("USER");
+                username = user.getName();
+                points = user.getPoints();
+                email = user.getEmail();
+                dob = user.getDob();
+                gender = user.getGender();
+                password = user.getPassword();
+                id = user.getId();
+            }
             //String action = getIntent().getAction();
-            if(intent.hasExtra("MAKE"))
+//            if(intent.hasExtra("MAKE"))
+//            {
+//                String pubName = intent.getStringExtra("PUB");
+//                for(int i=0; i<allPubs.size();i++){
+//                    if(pubName == allPubs.get(i).getName()){
+//                        Pub n = new Pub(allPubs.get(i).getPub_id(),allPubs.get(i).getName(),allPubs.get(i).getStreet_Name(),allPubs.get(i).getPostCode());
+//                        yourPubs.add(n);
+//                    }
+//                }
+//            }
+            if (intent.hasExtra("ID"))
             {
-                String pubName = intent.getStringExtra("PUB");
-                for(int i=0; i<allPubs.size();i++){
-                    if(pubName == allPubs.get(i).getName()){
-                        Pub n = new Pub(allPubs.get(i).getPub_id(),allPubs.get(i).getName(),allPubs.get(i).getStreet_Name(),allPubs.get(i).getPostCode());
-                        yourPubs.add(n);
-                    }
-                }
+                username = intent.getStringExtra("USERNAME");
+                gender = intent.getStringExtra("GENDER");
+                points = intent.getIntExtra("POINTS",60);
+                dob = intent.getStringExtra("DOB");
+                password = intent.getStringExtra("PASSWORD");
+                id = intent.getIntExtra("ID",10);
+                email = intent.getStringExtra("EMAIL");
             }
         }
 

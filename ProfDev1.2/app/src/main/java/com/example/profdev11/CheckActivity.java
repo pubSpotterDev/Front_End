@@ -74,8 +74,10 @@ public class CheckActivity extends AppCompatActivity {
         System.out.println("points"+points);
         System.out.println("email"+email);
 
+
         //final String id = Integer.toString(intent.getIntExtra("ID",10));
         points = points +10;
+        final int points3 = points;
         final String points2 =(Integer.toString(points));
 
         //final HashMap<String, String> params = new HashMap<>();
@@ -97,6 +99,18 @@ public class CheckActivity extends AppCompatActivity {
                 params1.put("password",password);
                 params1.put("id",ID);
 
+                Intent intent = new Intent(CheckActivity.this, NavActivity.class);
+
+                intent.putExtra("MAKE","MAKE");
+                intent.putExtra("USERNAME",username);
+                intent.putExtra("EMAIL",email);
+                intent.putExtra("DOB",dob);
+                intent.putExtra("GENDER",gender);
+                intent.putExtra("PASSWORD",password);
+                intent.putExtra("ID",ID);
+                //int points = intent.getIntExtra("POINTS",10);
+                intent.putExtra("POINTS",points3);
+
                 String url2 = "http://10.0.2.2:8010/pubspotter/userapi";
                 PerformPutCall(url2,params1);
 
@@ -104,10 +118,7 @@ public class CheckActivity extends AppCompatActivity {
                 checkPubCoordinates(checkpName, checkpStreetname, checkpPostcode, userLatitude, userLongitude, userLocation);
                 String pubName = checkpName.getText().toString();
 
-                Intent intent = new Intent(CheckActivity.this, NavActivity.class);
-                //intent.setAction("fromCheckIn");
                 intent.putExtra("PUB",pubName);
-                intent.putExtra("MAKE","MAKE");
                 startActivity(intent);
             }
         });
