@@ -1,6 +1,7 @@
 package com.example.profdev11;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -85,6 +86,10 @@ public class AccountActivity extends AppCompatActivity {
             SimpleAdapter adapter = new SimpleAdapter(this, data, android.R.layout.simple_list_item_2, new String[]{"Name_Street", "Postcode"}, new int[]{android.R.id.text1, android.R.id.text2}) {
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
+                    TextView textView=(TextView) view.findViewById(android.R.id.text1);
+                    TextView textView2=(TextView) view.findViewById(android.R.id.text2);
+                    textView.setTextColor(Color.WHITE);
+                    textView2.setTextColor(Color.WHITE);
                     return view;
                 }
             };
