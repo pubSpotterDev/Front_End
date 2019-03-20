@@ -3,17 +3,30 @@ package com.example.profdev11;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class AccountActivity extends AppCompatActivity {
 
     TextView tvName, tvAge, tvPoints, tvGender, tvListLabel;
     ListView lsPubs;
+
+    //String name, postcode, streetname;
+
+    //ArrayList<Pub> yourPubs = new ArrayList<>();
+    List<Map<String, String>> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +38,24 @@ public class AccountActivity extends AppCompatActivity {
         tvGender = findViewById(R.id.tvGender);
         tvPoints = findViewById(R.id.tvPoints);
         tvListLabel = findViewById(R.id.tvListLabel);
-        lsPubs = findViewById(R.id.lsPubs);
+        //lsPubs = findViewById(R.id.lsPubs);
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Intent intent = getIntent();
+        Bundle b = intent.getBundleExtra("BUNDLE");
+        ArrayList<Pub> yourPubs = new ArrayList<Pub>();
+
+        if(b.containsKey("ARRAYLIST")) {
+            yourPubs = (ArrayList<Pub>) b.getSerializable("ARRAYLIST");
+        }
+
         String username = intent.getStringExtra("USERNAME");
         String gender = intent.getStringExtra("GENDER");
         int points = intent.getIntExtra("POINTS",10);
         String age = intent.getStringExtra("DOB");
+
 
 
         tvName.setText("Hey "+username);
@@ -45,6 +66,30 @@ public class AccountActivity extends AppCompatActivity {
         tvListLabel.setText("These are the pubs you have visited so far: ");
 
         tvGender.setText("Your gender is: "+gender);
+
+        for(int i = 0; i<yourPubs.size();i++) {
+
+            int pub_id = yourPubs.get(i).getPub_id();
+            String name = yourPubs.get(i).getName();
+            String streetname = yourPubs.get(i).getStreet_Name();
+            String postcode = yourPubs.get(i).getPostCode();
+
+            String NS = String.format("%s %s", name, streetname);
+
+            Map<String, String> datum = new HashMap<>(2);
+            datum.put("Name_Street", NS);
+            datum.put("Postcode", postcode);
+            data.add(datum);
+
+            final ListView PubList = findViewById(R.id.lsPubs);
+            SimpleAdapter adapter = new SimpleAdapter(this, data, android.R.layout.simple_list_item_2, new String[]{"Name_Street", "Postcode"}, new int[]{android.R.id.text1, android.R.id.text2}) {
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    View view = super.getView(position, convertView, parent);
+                    return view;
+                }
+            };
+            PubList.setAdapter(adapter);
+        }
 
     }//onCreate method
 

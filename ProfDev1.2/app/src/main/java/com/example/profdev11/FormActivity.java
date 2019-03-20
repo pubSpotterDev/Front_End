@@ -56,10 +56,12 @@ public class FormActivity extends AppCompatActivity {
         final String password = intent.getStringExtra("PASSWORD");
         final String email = intent.getStringExtra("EMAIL");
         //final String points = "10";
-        System.out.println(id);
+        System.out.println("id"+id);
         final String ID = Integer.toString(id);
         int points = intent.getIntExtra("POINTS",5);
-        System.out.println(points);
+        System.out.println("points"+points);
+        System.out.println("email"+email);
+
         //final String id = Integer.toString(intent.getIntExtra("ID",10));
         points = points +10;
         final String points2 =(Integer.toString(points));

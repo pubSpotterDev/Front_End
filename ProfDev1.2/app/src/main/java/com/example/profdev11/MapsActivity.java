@@ -120,7 +120,6 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 //CHANGE THESE ACTIVITY POINTERS WHEN THE FORMS ARE MADE
             case R.id.add_pub:
                 Intent intent = new Intent(MapsActivity.this, FormActivity.class);
-                System.out.print(username+" "+email);
                 intent.putExtra("USERNAME",username);
                 intent.putExtra("EMAIL",email);
                 intent.putExtra("DOB",dob);
@@ -133,6 +132,12 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 return true;
             case R.id.check_in_pub:
                 Intent intentCheckIn = new Intent(MapsActivity.this, CheckActivity.class);
+                intentCheckIn.putExtra("USERNAME",username);
+                intentCheckIn.putExtra("EMAIL",email);
+                intentCheckIn.putExtra("DOB",dob);
+                intentCheckIn.putExtra("GENDER",gender);
+                intentCheckIn.putExtra("PASSWORD",password);
+                intentCheckIn.putExtra("ID",id);
                 intentCheckIn.putExtra("POINTS",points);
                 intentCheckIn.putExtra("userLatitude", 53.470407);
                 intentCheckIn.putExtra("userLongitude", 2.239145);

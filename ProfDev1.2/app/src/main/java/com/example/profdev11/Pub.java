@@ -1,13 +1,13 @@
 package com.example.profdev11;
 
-public class Pub {
+import java.io.Serializable;
+
+public class Pub implements Serializable {
 
     private int pub_id;
     private String name;
     private String street_name;
     private String postcode;
-
-
 
     public Pub(int pub_id, String name, String street_name, String postcode)
     {

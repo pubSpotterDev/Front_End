@@ -20,6 +20,7 @@ import org.json.JSONException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class NavActivity extends AppCompatActivity {
 
 
     ArrayList<Pub> allPubs = new ArrayList<>();
+    ArrayList<Pub> yourPubs = new ArrayList<>();
     List<Map<String, String>> data = new ArrayList<>();
 
     @Override
@@ -60,16 +62,41 @@ public class NavActivity extends AppCompatActivity {
         tvPubLabel = findViewById(R.id.tvPubLabel);
         //pubList = findViewById(R.id.lsPubs);
 
-        Intent intent = getIntent();
+        if( getIntent().getExtras() != null)
+        {
+            Intent intent = getIntent();
+            User user = (User)intent.getSerializableExtra("USER");
+            username = user.getName();
+            points = user.getPoints();
+            email = user.getEmail();
+            dob = user.getDob();
+            gender = user.getGender();
+            password = user.getPassword();
+            id = user.getId();
+            //String action = getIntent().getAction();
+            if(intent.hasExtra("MAKE"))
+            {
+                String pubName = intent.getStringExtra("PUB");
+                for(int i=0; i<allPubs.size();i++){
+                    if(pubName == allPubs.get(i).getName()){
+                        Pub n = new Pub(allPubs.get(i).getPub_id(),allPubs.get(i).getName(),allPubs.get(i).getStreet_Name(),allPubs.get(i).getPostCode());
+                        yourPubs.add(n);
+                    }
+                }
+            }
+
+        }
+
+        /*Intent intent = getIntent();
 
         User user = (User)intent.getSerializableExtra("USER");
-//        username = user.getName();
-//        points = user.getPoints();
-//        email = user.getEmail();
-//        dob = user.getDob();
-//        gender = user.getGender();
-//        password = user.getPassword();
-//        id = user.getId();
+        username = user.getName();
+        points = user.getPoints();
+        email = user.getEmail();
+        dob = user.getDob();
+        gender = user.getGender();
+        password = user.getPassword();
+        id = user.getId();*/
 
         //gender2 = gender;
 
@@ -140,13 +167,15 @@ public class NavActivity extends AppCompatActivity {
 
                 Pub p = new Pub(pub_id,name,streetname,postcode);
                 allPubs.add(p);
+                if(i%4==0) {
+                    yourPubs.add(p);
+                }
 
                 //Adapter Data For List View
                 Map<String, String> datum = new HashMap<>(2);
                 datum.put("Name_Street", NS);
                 datum.put("Postcode", postcode);
                 data.add(datum);
-
 
                 final ListView PubList = findViewById(R.id.lsPubs);
                 SimpleAdapter adapter = new SimpleAdapter(this, data, android.R.layout.simple_list_item_2, new String[]{"Name_Street", "Postcode"}, new int[]{android.R.id.text1, android.R.id.text2}) {
@@ -160,6 +189,9 @@ public class NavActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        //yourPubs.add(allPubs.get(1));
+        //System.out.print(allPubs.get(1).toString());
     }
 
     public String convertStreamToString(InputStream is)
@@ -197,7 +229,9 @@ public class NavActivity extends AppCompatActivity {
                     intentAccount.putExtra("DOB",dob);
                     intentAccount.putExtra("EMAIL",email);
                     intentAccount.putExtra("USERNAME",username);
-                    //Bundle b = intentAccount.getExtras();
+                    Bundle b = new Bundle();
+                    b.putSerializable("ARRAYLIST",yourPubs);
+                    intentAccount.putExtra("BUNDLE",b);
                     startActivity(intentAccount);
                     return true;
                 case R.id.navigation_about:
@@ -209,7 +243,4 @@ public class NavActivity extends AppCompatActivity {
             return false;
         }
     };//OnNavigationItemSelectedListener
-
-
-
 }
