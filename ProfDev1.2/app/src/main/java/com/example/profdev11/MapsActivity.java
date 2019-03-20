@@ -164,9 +164,10 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
         enableMyLocation();
 
         //pub names and locations
-        String pubName[] = {"The Footage", "The Temple", "The GasWorks Brewbar", "Be At One", "The Deaf Institute"};
+        String pubName[] = {"The Footage", "The Temple", "The GasWorks Brewbar", "Be At One", "The Deaf Institute", "The Salutation", "OSheas Irish Bar", "sandbar"};
         LatLng pubLocation[] = {new LatLng(53.470, -2.236), new LatLng(53.475, -2.242),
         new LatLng(53.473, -2.246), new LatLng(53.482, -2.246),
+                new LatLng(53.470, -2.236), new LatLng(53.468, -2.239), new LatLng(53.475, -2.238),
                 new LatLng(53.470, -2.236)};
 
         for (int i = 0; i < pubName.length; i++) {
