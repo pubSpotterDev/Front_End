@@ -208,9 +208,6 @@ public class NavActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_main:
-                    Toast.makeText(getApplicationContext(),"You are already on the main page",Toast.LENGTH_SHORT).show();
-                    return true;
                 case R.id.navigation_map:
                     Intent intentMap = new Intent(NavActivity.this, MapsActivity.class);
                     intentMap.putExtra("POINTS",points);
@@ -236,7 +233,6 @@ public class NavActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_about:
                     Intent intentAbout = new Intent(NavActivity.this,AboutActivity.class);
-
                     startActivity(intentAbout);
                     return true;
             }//switch

@@ -8,20 +8,6 @@
     android:textColor="@color/colorText"
     tools:context=".AccountActivity">
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="0dp"
-        android:layout_height="54dp"
-        android:background="@color/colorPrimaryDark"
-        app:itemIconTint="@android:color/background_light"
-        app:itemTextColor="@android:color/background_light"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/navigation" />
-
     <TextView
         android:id="@+id/tvName"
         android:layout_width="285dp"
@@ -122,7 +108,7 @@
         android:layout_marginBottom="8dp"
         android:cacheColorHint="@color/colorText"
         android:textColor="@color/colorText"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvListLabel" />

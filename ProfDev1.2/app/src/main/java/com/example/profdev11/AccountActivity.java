@@ -41,7 +41,7 @@ public class AccountActivity extends AppCompatActivity {
         //lsPubs = findViewById(R.id.lsPubs);
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        //navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Intent intent = getIntent();
         Bundle b = intent.getBundleExtra("BUNDLE");
@@ -93,7 +93,7 @@ public class AccountActivity extends AppCompatActivity {
 
     }//onCreate method
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    /*private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -116,5 +116,5 @@ public class AccountActivity extends AppCompatActivity {
             }//switch
             return false;
         }//onNavigationItemSelected bool
-    };//OnNavigationItemSelectedListener
+    };//OnNavigationItemSelectedListener*/
 }

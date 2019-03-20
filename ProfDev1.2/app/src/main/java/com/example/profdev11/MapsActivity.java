@@ -75,7 +75,7 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.map_menu, menu);
-        inflater.inflate(R.menu.navigation,menu);
+        //inflater.inflate(R.menu.navigation,menu);
         return true;
     }//onCreateOptionsMenu method
 
@@ -122,7 +122,7 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
                 startActivity(intentCheckIn);
                 return true;
             //NavBar
-            case R.id.navigation_main:
+            /*case R.id.navigation_main:
                 Intent intentNav = new Intent(MapsActivity.this,NavActivity.class);
                 startActivity(intentNav);
                 return true;
@@ -143,7 +143,7 @@ public class MapsActivity<PubMarker> extends AppCompatActivity implements OnMapR
             case R.id.navigation_about:
                 Intent intentAbout = new Intent(MapsActivity.this,AboutActivity.class);
                 startActivity(intentAbout);
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }//switch
