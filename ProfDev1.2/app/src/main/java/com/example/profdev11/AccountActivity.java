@@ -61,7 +61,7 @@ public class AccountActivity extends AppCompatActivity {
 
         tvName.setText("Hey "+username);
         tvAge.setText("Your date of birth is "+age);
-        tvPoints.setText("You have "+points+" pub points (pp)");
+        tvPoints.setText("You have "+points+" points and are level "+(points/10));
 
         tvGender.setText("Your gender is :"+gender);
         tvListLabel.setText("These are the pubs you have visited so far: ");
