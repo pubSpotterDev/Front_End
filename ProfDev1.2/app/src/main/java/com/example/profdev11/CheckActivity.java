@@ -242,7 +242,7 @@ public class CheckActivity extends AppCompatActivity {
                 }
         }
         else {
-            Toast.makeText(getApplicationContext(), "Sorry, we couldn't find a pub in your location", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Sorry, we couldn't find a pub at your location", Toast.LENGTH_LONG).show();
             return tempLocation;
         }
     }

@@ -259,7 +259,7 @@ public class FormActivity extends AppCompatActivity {
         }
 
         if (geocodeMatches != null) {
-            if (!geocodeMatches.isEmpty()) {
+           // if (!geocodeMatches.isEmpty()) {
                 boolean pubAdded = true;
                 latitude = (float) geocodeMatches.get(0).getLatitude();
                 longitude = (float) geocodeMatches.get(0).getLongitude();
@@ -273,10 +273,10 @@ public class FormActivity extends AppCompatActivity {
                 startActivity(intentBackToMap);
                 return pubLocation;
 
-            }
+           // }
         }
         else
-            Toast.makeText(getApplicationContext(), "No matches" , Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "" , Toast.LENGTH_LONG).show();
             return tempLocation;
     }
 }
